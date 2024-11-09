@@ -1,36 +1,27 @@
-# Start with the Selenium standalone Chrome image
-FROM selenium/standalone-chrome
+# Here is my Dockerfile
+# Use an official Python runtime as a base image
+FROM python:3.8-slim
 
-# Switch to root to install system dependencies
-USER root
-
-# Install Python, pip, and development tools required for Python packages
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip python3-venv \
-                       build-essential gcc python3-dev
-
-# Optional: Add dependencies for specific Python packages that may require them
-# RUN apt-get install -y libpq-dev  # For psycopg2 and PostgreSQL support
-
-# Copy the Selenium Server JAR file
-COPY selenium-server-standalone-3.141.59.jar /usr/local/bin/
-
-# Copy the project files into the container
-COPY . /app
-
-# Set the working directory to /app
+# Set the working directory in the container
 WORKDIR /app
 
-# Create and activate a virtual environment, then install dependencies
-RUN python3 -m venv /app/venv && \
-    /app/venv/bin/pip install --upgrade pip && \
-    /app/venv/bin/pip install --break-system-packages -r /app/eTrade/requirements.txt
+# Copy requirements.txt to the container and install dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Set the PATH environment variable to use the virtual environment by default
-ENV PATH="/app/venv/bin:$PATH"
+# Copy the rest of the application code
+COPY . /app
 
-# Expose the Selenium port (4444 by default)
-EXPOSE 4444
+# Set up environment variables (optional, for testing without Compose)
+ENV BASE_URL "https://etrade.gov.et"
+ENV SAVE_FREQUENCY 1000
+ENV DATA_PATH "/app/data/scraped_data_all.json"
+ENV TIN_FILE_PATH "/app/data/test.csv"
 
-# Command to run the Selenium Server
-CMD ["java", "-jar", "/usr/local/bin/selenium-server-standalone-3.141.59.jar"]
+# Set environment variables for AWS credentials (optional)
+# Alternatively, you can pass these in docker-compose.yml
+# ENV AWS_ACCESS_KEY_ID=<your-access-key>
+# ENV AWS_SECRET_ACCESS_KEY=<your-secret-key>
+
+# Run eTrade.py (adjust if eTrade.py has a different entry point)
+CMD ["python", "/app/scripts/eTrade.py"]

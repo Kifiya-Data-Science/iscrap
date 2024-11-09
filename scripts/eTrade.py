@@ -2,14 +2,25 @@ import requests
 import json
 import time
 import os
+import logging
+from io import BytesIO
+import boto3
+from botocore.exceptions import ClientError
 from TGenerator import TGenerator
 
 class Scraper:
-    def __init__(self, base_url, save_frequency=1000):
+    def __init__(self, base_url, save_frequency=1000, s3_bucket=None, s3_key=None):
         self.base_url = base_url
         self.all_data = {}  # Dictionary to store TIN data in the desired format
         self.save_frequency = save_frequency  # Save data every 'save_frequency' TINs
         self.batch_counter = 0  # Counter to track TINs processed in the current batch
+        self.s3_bucket = s3_bucket
+        self.s3_key = s3_key
+        self.s3_client = boto3.client(
+            's3',
+            aws_access_key_id=os.getenv('AWS_ACCESS_KEY_ID'),
+            aws_secret_access_key=os.getenv('AWS_SECRET_ACCESS_KEY')
+        )
 
     def simulate_button_click(self, tin):
         url = f"{self.base_url}/api/Registration/GetRegistrationInfoByTin/{tin}/am"
@@ -122,21 +133,44 @@ class Scraper:
             return None
 
     def save_batch_data(self):
-        data_dir = '../data'
-        os.makedirs(data_dir, exist_ok=True)
-        file_path = os.path.join(data_dir, 'scraped_data_all.json')
+        """Logs the extracted data into a JSON file on S3."""
+        try:
+            # Check if the file already exists in S3
+            try:
+                # Download the existing file
+                s3_object = self.s3_client.get_object(Bucket=self.s3_bucket, Key=self.s3_key)
+                existing_data = json.load(BytesIO(s3_object['Body'].read()))
+            except ClientError as e:
+                if e.response['Error']['Code'] == 'NoSuchKey':
+                    print(f"{self.s3_key} does not exist in {self.s3_bucket}. Creating a new file.")
+                    existing_data = []
+                else:
+                    print(f"Error occurred while fetching the file from S3: {e}")
+                    return
 
-        with open(file_path, 'a') as f:
-            json.dump(self.all_data, f, ensure_ascii=False, indent=4)
-            f.write("\n")  # Newline for separating batches
+            # Append new data
+            existing_data.extend(self.all_data.values())
 
-        print(f"Batch of {self.save_frequency} TINs saved to {file_path}")
+            # Write the updated data back to S3
+            json_data = json.dumps(existing_data, ensure_ascii=False, indent=4)
+            self.s3_client.put_object(Bucket=self.s3_bucket, Key=self.s3_key, Body=json_data.encode('utf-8'))
+
+            print("Data successfully logged to S3 JSON.")
+        except Exception as e:
+            print(f"Issue writing to S3 JSON file: {e}")
 
 def main():
-    base_url = 'https://etrade.gov.et'
-    scraper = Scraper(base_url, save_frequency=1000)
-    # t_generator = TGenerator(file_path='../data/formatted_tins.csv')
-    t_generator = TGenerator(file_path='../data/test.csv')
+    # Use environment variables or fallback to default values
+    base_url = os.getenv('BASE_URL', 'https://etrade.gov.et')
+    save_frequency = int(os.getenv('SAVE_FREQUENCY', 1000))
+    s3_bucket = os.getenv('S3_BUCKET_NAME')
+    s3_key = os.getenv('S3_KEY', 'scraped_data_all.json')
+    tin_file_path = os.getenv('TIN_FILE_PATH', '../data/test.csv')
+    
+    # Initialize the scraper and TIN generator
+    scraper = Scraper(base_url, save_frequency=save_frequency, s3_bucket=s3_bucket, s3_key=s3_key)
+    t_generator = TGenerator(file_path=tin_file_path)
+    
     batch_size = 5
     request_count = 0
 
@@ -157,12 +191,7 @@ def main():
                     request_count = 0
 
     except requests.exceptions.ConnectionError as e:
-        print("Connection error occurred. Saving all data before exiting.")
-    except Exception as e:
-        print(f"Unexpected error occurred: {e}. Saving all data before exiting.")
-
-    if scraper.all_data:
-        scraper.save_batch_data()
+        print("Connection error:", e)
 
 if __name__ == "__main__":
     main()

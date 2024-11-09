@@ -7,7 +7,7 @@ from TGenerator import TGenerator
 class Scraper:
     def __init__(self, base_url, save_frequency=1000):
         self.base_url = base_url
-        self.all_data = []  # List to store data in batches
+        self.all_data = {}  # Dictionary to store TIN data in the desired format
         self.save_frequency = save_frequency  # Save data every 'save_frequency' TINs
         self.batch_counter = 0  # Counter to track TINs processed in the current batch
 
@@ -30,7 +30,7 @@ class Scraper:
             elif response.status_code == 200:
                 try:
                     data = response.json()
-                    self.get_additional_data(data, tin)
+                    self.format_data(data, tin)  # Format data for JSON output
                     return data
                 except json.JSONDecodeError as e:
                     print(f"Error decoding JSON: {e}")
@@ -46,18 +46,48 @@ class Scraper:
         print("Failed to fetch data after multiple attempts due to rate limiting.")
         return None
 
-    def get_additional_data(self, initial_data, tin):
-        for business in initial_data.get("Businesses", []):
-            license_no = business.get("LicenceNumber")
-            if license_no:
-                print(f"Sending request for LicenseNo: {license_no}")
-                additional_data = self.send_second_request(license_no, tin)
-                if additional_data:
-                    business.update(additional_data)
+    def format_data(self, initial_data, tin):
+        # Extract fields from initial data
+        formatted_data = {
+            "Tin": tin,
+            "LegalCondtion": initial_data.get("LegalCondtion"),
+            "RegNo": initial_data.get("RegNo"),
+            "RegDate": initial_data.get("RegDate"),
+            "BusinessName": initial_data.get("BusinessName"),
+            "BusinessNameAmh": initial_data.get("BusinessNameAmh"),
+            "PaidUpCapital": initial_data.get("PaidUpCapital"),
+            "Position": initial_data["AssociateShortInfos"][0].get("Position") if initial_data["AssociateShortInfos"] else None,
+            "ManagerName": initial_data["AssociateShortInfos"][0].get("ManagerName") if initial_data["AssociateShortInfos"] else None,
+            "ManagerNameEng": initial_data["AssociateShortInfos"][0].get("ManagerNameEng") if initial_data["AssociateShortInfos"] else None,
+            "MobilePhone": initial_data["AssociateShortInfos"][0].get("MobilePhone") if initial_data["AssociateShortInfos"] else None,
+            "RegularPhone": initial_data["AssociateShortInfos"][0].get("RegularPhone") if initial_data["AssociateShortInfos"] else None,
+            "Businesses": []
+        }
 
-        self.all_data.append({tin: initial_data})
+        # Process each business and send secondary request if LicenseNumber is present
+        for business in initial_data.get("Businesses", []):
+            business_data = {
+                "LicenceNumber": business.get("LicenceNumber"),
+                "RenewalDate": business.get("RenewalDate"),
+                "RenewedFrom": business.get("RenewedFrom"),
+                "RenewedTo": business.get("RenewedTo"),
+                "BusinessLicensingGroupMain": business.get("BusinessLicensingGroupMain"),
+                "Description": business["SubGroups"][0].get("Description") if business.get("SubGroups") else None,
+            }
+
+            # Retrieve additional data from the second request
+            if business.get("LicenceNumber"):
+                additional_data = self.send_second_request(business["LicenceNumber"], tin)
+                if additional_data:
+                    business_data.update(additional_data)  # Update business data with AddressInfo, Capital, Status
+
+            formatted_data["Businesses"].append(business_data)
+
+        # Store formatted data
+        self.all_data[tin] = formatted_data
         self.batch_counter += 1
 
+        # Save data in batches
         if self.batch_counter >= self.save_frequency:
             self.save_batch_data()
             self.all_data.clear()
@@ -105,7 +135,8 @@ class Scraper:
 def main():
     base_url = 'https://etrade.gov.et'
     scraper = Scraper(base_url, save_frequency=1000)
-    t_generator = TGenerator(file_path='../data/formatted_tins.csv')
+    # t_generator = TGenerator(file_path='../data/formatted_tins.csv')
+    t_generator = TGenerator(file_path='../data/test.csv')
     batch_size = 5
     request_count = 0
 

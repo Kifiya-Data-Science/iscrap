@@ -1,67 +1,123 @@
-# 🏷️ Project Name: TIN Extractor
+# eTrade TIN Scraper
 
-> **A powerful multi-threaded TIN extractor for eTrade using Selenium WebDriver.** 
+This project is a scraper tool for fetching Trade Identification Number (TIN) data from the eTrade website. The scraper uses two HTTP API endpoints provided by eTrade to gather information based on TIN numbers. It fetches detailed business and manager information for each TIN and saves the results in a structured JSON file.
 
-## 📚 Table of Contents
+## Project Structure
 
-- [Introduction](#introduction)
-- [Features](#features)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Project Structure](#project-structure)
-- [Contributing](#contributing)
-- [License](#license)
-- [Contact](#contact)
+The project is organized as follows:
 
----
+```
+Scrape/
+├── data/
+│   └── test.csv          # Sample TIN numbers (used as input by the scraper)
+├── output/               # Directory where scraped JSON data will be saved
+├── scripts/
+│   ├── eTrade.py         # Main scraper script
+│   └── TGenerator.py     # Utility script to generate TIN numbers from input file
+├── .dockerignore
+├── Dockerfile
+├── README.md
+└── requirements.txt      # Project dependencies
+```
 
-## 🥇 Introduction
+- **data/**: Contains input data files (like test.csv) with TIN numbers.
+- **output/**: Directory where the scraper will save the output JSON file (`scraped_data_all.json`).
+- **scripts/**: Contains the main scraper script (`eTrade.py`) and a helper script (`TGenerator.py`) for generating TINs.
+- **Dockerfile**: Defines the environment and dependencies for running the scraper in a Docker container.
+- **requirements.txt**: Lists Python dependencies required by the scraper.
 
-Welcome to the **TIN Extractor** project! This scraping tool is designed specifically to extract data from the **Ethiopian Trade License** website using TIN (Tax Identification Numbers). By leveraging multi-threading, it efficiently loads multiple pages concurrently, optimizing the data extraction process. 
+## Prerequisites
 
-The data is extracted via **Selenium WebDriver** in headless mode, ensuring that the scraper operates without any UI distractions. Once collected, the data is parsed and logged into **JSON** files for seamless analysis and processing.
+- **Docker**: Ensure Docker is installed on your system.
 
----
+## How to Run
 
-## 🚀 Features
+Follow these steps to build and run the project using Docker.
 
-- **🔄 Multi-threading**: Simultaneously scrapes multiple TINs for lightning-fast data extraction.
-- **🕵️ Headless Selenium**: Utilizes a headless browser to extract data while keeping resource usage low.
-- **📜 Logging**: Implements error handling and logs activities into the `app.log` file for easy tracking.
-- **📁 JSON Output**: Extracted data is saved in JSON format, making it easy to manipulate and analyze.
+### 1. Build the Docker Image
 
----
-
-## 💻 Installation
-
-### Prerequisites
-
-Before you get started, ensure you have the following installed:
-
-- Python 3.x
-- [Selenium WebDriver](https://www.selenium.dev/)
-- Google Chrome
-- ChromeDriver (managed automatically by `webdriver-manager`)
-
-### Clone the Repository
-
-Start by cloning the repository to your local machine:
+Run the following command to build the Docker image for the scraper:
 
 ```bash
-git clone https://github.com/your-username/your-repository.git
-cd your-repository
+docker build -t my_scraper_app .
+```
 
+This command:
+- Uses the Dockerfile in the current directory to create a Docker image named `my_scraper_app`.
+- Installs all dependencies specified in `requirements.txt`.
 
+### 2. Run the Docker Container
 
-## Install Dependencies
+Once the image is built, run the container with the following command:
 
-pip install -r requirements.txt
+```bash
+docker run -v "$(pwd)/output:/app/output" my_scraper_app
+```
 
-## Run the scraper
+This command:
+- Maps the `output` directory on your host system to `/app/output` inside the container.
+- Ensures that any JSON data saved in `/app/output` within the container will be accessible in the `output` folder on your host.
 
-python eTradeMain.py
+The scraper will automatically run and start fetching TIN data, saving the output to `output/scraped_data_all.json` on your host system.
 
+### 3. View Output
 
+After the container has finished running, you can view the scraped JSON data in the `output/scraped_data_all.json` file.
 
+## Code Overview
 
+### Main Components
 
+- **eTrade.py**: This is the primary scraper script. It defines a `Scraper` class with the following functions:
+  - `simulate_button_click(tin)`: Fetches data for a given TIN.
+  - `format_data(data, tin)`: Formats and structures data received from the API.
+  - `save_batch_data()`: Saves data to the JSON file in batches.
+  
+- **TGenerator.py**: A helper script that reads TIN numbers from `data/test.csv` and provides them in batches to the scraper.
+
+### Data Saving Strategy
+
+The scraper saves data in batches to avoid losing data if the script is interrupted. You can configure the batch size in the `Scraper` class (by setting the `save_frequency` parameter). Each batch of TIN data is appended to the `output/scraped_data_all.json` file.
+
+## Error Handling and Retry Mechanism
+
+The scraper includes error handling for common HTTP issues:
+- **Rate Limiting**: If the server returns a 429 (rate limit exceeded), the scraper pauses and retries with exponential backoff.
+- **Connection Errors**: If a connection error occurs, the scraper saves all current data and exits gracefully.
+- **JSON Decode Errors**: If there's an error parsing JSON, the scraper logs the error and skips that TIN.
+
+## Customization
+
+- **Batch Size**: You can adjust the batch size by modifying the `save_frequency` parameter in the `Scraper` class (in `eTrade.py`).
+- **Input Data**: Replace or modify `data/test.csv` with your own file of TIN numbers if you want to scrape different TINs.
+
+## Troubleshooting
+
+- **Output Folder Not Populated**: Make sure the `-v "$(pwd)/output:/app/output"` flag is used when running the container. This maps the container's `/app/output` directory to your host's `output` directory.
+- **Network Issues**: If the script cannot connect to the eTrade API, check your network connection or ensure that the API endpoint is available.
+
+## Example Output
+
+The output JSON file (`scraped_data_all.json`) will have the following structure:
+
+```json
+{
+    "TIN1": {
+        "Tin": "TIN1",
+        "LegalCondtion": "...",
+        "RegNo": "...",
+        "RegDate": "...",
+        "BusinessName": "...",
+        "Businesses": [
+            {
+                "LicenceNumber": "...",
+                "RenewalDate": "...",
+                "BusinessLicensingGroupMain": "...",
+                ...
+            }
+        ],
+        ...
+    },
+    ...
+}
+```

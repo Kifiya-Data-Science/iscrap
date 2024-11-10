@@ -1,36 +1,22 @@
-# Start with the Selenium standalone Chrome image
-FROM selenium/standalone-chrome
+# Use an official Python runtime as a parent image
+FROM python:3.9-slim
 
-# Switch to root to install system dependencies
-USER root
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
+ENV PYTHONUNBUFFERED 1
 
-# Install Python, pip, and development tools required for Python packages
-RUN apt-get update && \
-    apt-get install -y python3 python3-pip python3-venv \
-                       build-essential gcc python3-dev
-
-# Optional: Add dependencies for specific Python packages that may require them
-# RUN apt-get install -y libpq-dev  # For psycopg2 and PostgreSQL support
-
-# Copy the Selenium Server JAR file
-COPY selenium-server-standalone-3.141.59.jar /usr/local/bin/
-
-# Copy the project files into the container
-COPY . /app
-
-# Set the working directory to /app
+# Set the working directory
 WORKDIR /app
 
-# Create and activate a virtual environment, then install dependencies
-RUN python3 -m venv /app/venv && \
-    /app/venv/bin/pip install --upgrade pip && \
-    /app/venv/bin/pip install --break-system-packages -r /app/eTrade/requirements.txt
+# Copy the requirements file and install dependencies
+COPY requirements.txt /app/
+RUN pip install --no-cache-dir -r requirements.txt
 
-# Set the PATH environment variable to use the virtual environment by default
-ENV PATH="/app/venv/bin:$PATH"
+# Copy the entire project into the container
+COPY . /app
 
-# Expose the Selenium port (4444 by default)
-EXPOSE 4444
+# Expose any ports the app might use (if needed)
+# EXPOSE 8080  # Uncomment if needed for any specific port communication
 
-# Command to run the Selenium Server
-CMD ["java", "-jar", "/usr/local/bin/selenium-server-standalone-3.141.59.jar"]
+# Run the main script
+CMD ["python", "scripts/eTrade.py"]

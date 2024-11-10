@@ -1,3 +1,4 @@
+# Here is my eTrade.py script:
 import requests
 import json
 import time
@@ -136,7 +137,8 @@ def main():
     base_url = 'https://etrade.gov.et'
     scraper = Scraper(base_url, save_frequency=1000)
     # t_generator = TGenerator(file_path='../data/formatted_tins.csv')
-    t_generator = TGenerator(file_path='../data/test.csv')
+    # t_generator = TGenerator(file_path='../data/test.csv')
+    t_generator = TGenerator(file_path='/app/data/test.csv')
     batch_size = 5
     request_count = 0
 

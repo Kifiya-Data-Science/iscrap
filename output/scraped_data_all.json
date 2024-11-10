@@ -1,0 +1,574 @@
+{
+    "0074174796": {
+        "Tin": "0074174796",
+        "LegalCondtion": "6",
+        "RegNo": "HR/NIGD/6/0012020/2013",
+        "RegDate": "22/11/2013",
+        "BusinessName": "ETSBDINK AND TEBABU GENERAL CONTRACTOR PARTNAR SHI",
+        "BusinessNameAmh": "እፁብድንቅ እና ጥበቡ ጠቅላላ ስራ ተቀራጭ ህብረት ሽርክና ማህበር",
+        "PaidUpCapital": 115000.0,
+        "Position": null,
+        "ManagerName": "ጥበቡ በዛብህ",
+        "ManagerNameEng": "TEBABU BEZABHE",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "HR/NIGD/13/56776/6727592/2013",
+                "RenewalDate": "5/2/2016",
+                "RenewedFrom": "30/10/2015",
+                "RenewedTo": "30/10/2016",
+                "BusinessLicensingGroupMain": null,
+                "Description": "ጠቅላላ ስራ ተቋራጭ ከውሀ  ስራዎች በስተቀር",
+                "AddressInfo": {
+                    "Region": "Harar",
+                    "Zone": "Hareerie",
+                    "Woreda": "Shenkor",
+                    "Kebele": "09",
+                    "HouseNo": "085",
+                    "MobilePhone": "0935626130",
+                    "RegularPhone": "0935626130"
+                },
+                "Capital": 115000.0,
+                "Status": 1
+            }
+        ]
+    },
+    "0010742939": {
+        "Tin": "0010742939",
+        "LegalCondtion": "1",
+        "RegNo": "ORO/EWL/GAW/1/0000361/2007",
+        "RegDate": "25/6/2007",
+        "BusinessName": "ALI YIRGA ADEM",
+        "BusinessNameAmh": "ኣሊ ይርጋ ኣዳም",
+        "PaidUpCapital": 3050.0,
+        "Position": null,
+        "ManagerName": "ኣሊ ይርጋ",
+        "ManagerNameEng": "ALI YIRGA",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "04/11235/781/2007",
+                "RenewalDate": "10/12/2016",
+                "RenewedFrom": "1/11/2016",
+                "RenewedTo": "30/10/2017",
+                "BusinessLicensingGroupMain": null,
+                "Description": "(62411)የጨርቃ ጨርቅ ጭረቶች፣ ጨርቃጨርቅ፣ ጥጥ፣ ክርና አልባሳት ችርቻሮ ንግድ",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "EAST WELLEGA",
+                    "Woreda": "Gida Ayana",
+                    "Kebele": "Gandaa A/guutee 02",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "09",
+                    "RegularPhone": "09"
+                },
+                "Capital": 3050.0,
+                "Status": 5
+            }
+        ]
+    },
+    "0068637290": {
+        "Tin": "0068637290",
+        "LegalCondtion": "1",
+        "RegNo": "ORO/EHZ/BBT/1/0000014/2013",
+        "RegDate": "7/7/2013",
+        "BusinessName": "MAHAMMED ABDO MUMAD",
+        "BusinessNameAmh": "መሀመድ አብዶ ሙመድ መ",
+        "PaidUpCapital": 30400.0,
+        "Position": null,
+        "ManagerName": "መሀመድ አብዶ",
+        "ManagerNameEng": "MAHAMMED ABDO",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "ORO/EHZ/BBT/04/406\t/5816238/2013",
+                "RenewalDate": "19/11/2016",
+                "RenewedFrom": "1/11/2016",
+                "RenewedTo": "30/10/2017",
+                "BusinessLicensingGroupMain": null,
+                "Description": "የወንዶች የውበት ሳሎን አገልግሎት",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "EAST HARARGE",
+                    "Woreda": "Babile Town",
+                    "Kebele": "Babile Town",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "0977550063",
+                    "RegularPhone": "0977550063"
+                },
+                "Capital": 30400.0,
+                "Status": 5
+            }
+        ]
+    },
+    "0000530110": {
+        "Tin": "0000530110",
+        "LegalCondtion": "1",
+        "RegNo": "ORO/NSHZ/WUW/1/0000337/2007",
+        "RegDate": "15/5/2007",
+        "BusinessName": "NIGATU MULUGETA BOGALE",
+        "BusinessNameAmh": "ንጋቱ ሙሉጌታ ቦጋለ",
+        "PaidUpCapital": 20894.0,
+        "Position": null,
+        "ManagerName": "ንጋቱ ሙሉጌታ",
+        "ManagerNameEng": "NIGATU MULUGETA",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "ORO/NSH/Z/04/318/4867554/2016",
+                "RenewalDate": "9/11/2016",
+                "RenewedFrom": "1/11/2016",
+                "RenewedTo": "30/10/2017",
+                "BusinessLicensingGroupMain": null,
+                "Description": "(62115)ትንሽ ሱቅ (ኪዮስክ)",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "NORTH SHEWA",
+                    "Woreda": "WUCHALE",
+                    "Kebele": "KEBELE 01",
+                    "HouseNo": "333",
+                    "MobilePhone": "0911774516",
+                    "RegularPhone": "0911774516"
+                },
+                "Capital": 20894.0,
+                "Status": 5
+            }
+        ]
+    },
+    "0040990331": {
+        "Tin": "0040990331",
+        "LegalCondtion": "1",
+        "RegNo": "ORO/ADT/1/0011866/2016",
+        "RegDate": "25/4/2016",
+        "BusinessName": "LOMI KENENI BEDADA",
+        "BusinessNameAmh": "ሎሚ ቀነኔ በዳዳ",
+        "PaidUpCapital": 20000.0,
+        "Position": null,
+        "ManagerName": "ሎሚ ቀነኔ ",
+        "ManagerNameEng": "LOMI KENENI",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "ORO/ADT/04/451/4811330/2016",
+                "RenewalDate": "3/5/2016",
+                "RenewedFrom": "3/5/2016",
+                "RenewedTo": "30/10/2016",
+                "BusinessLicensingGroupMain": null,
+                "Description": "እንጨትና የእንጨት ውጤቶችን  መፈብረክ",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "ADAMA TOWN",
+                    "Woreda": "Aba Geda",
+                    "Kebele": "Bedatu",
+                    "HouseNo": "harawa",
+                    "MobilePhone": "0913513889",
+                    "RegularPhone": "0913513889"
+                },
+                "Capital": 20000.0,
+                "Status": 1
+            }
+        ]
+    },
+    "0060734380": {
+        "Tin": "0060734380",
+        "LegalCondtion": "1",
+        "RegNo": "ORO/JZ/SKW/1/0000898/2014",
+        "RegDate": "10/6/2014",
+        "BusinessName": "ZAAKIR A/JIHAAD A/DULAA",
+        "BusinessNameAmh": "ዛኪር ኣባጂሃድ ኣባዱላ",
+        "PaidUpCapital": 10000.0,
+        "Position": null,
+        "ManagerName": "ዛኪር ኣባጂሃድ",
+        "ManagerNameEng": "ZAAKIR A/JIHAAD",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "ORO/JZ/SKW/04/278/1674208/2014",
+                "RenewalDate": "2/11/2016",
+                "RenewedFrom": "30/10/2016",
+                "RenewedTo": "30/10/2017",
+                "BusinessLicensingGroupMain": null,
+                "Description": "(62115)ትንሽ ሱቅ (ኪዮስክ)",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "JIMMA ZONE           ",
+                    "Woreda": "SOKORU",
+                    "Kebele": "TIRO KUMBI",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "0900000000",
+                    "RegularPhone": "0900000000"
+                },
+                "Capital": 10000.0,
+                "Status": 5
+            }
+        ]
+    },
+    "0079693118": {
+        "Tin": "0079693118",
+        "LegalCondtion": "1",
+        "RegNo": "ORO/EHZ/HW/1/0003748/2014",
+        "RegDate": "7/12/2014",
+        "BusinessName": "ABDALAA ALYYI MUSSAA",
+        "BusinessNameAmh": "አበዳላ አሊይ ሙሳ",
+        "PaidUpCapital": 300000.0,
+        "Position": null,
+        "ManagerName": "አበዳላ አሊይ",
+        "ManagerNameEng": "ABDALAA ALYYI",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "ORO/EHZ/HW/04/384/4113819/2014",
+                "RenewalDate": "7/12/2014",
+                "RenewedFrom": "7/12/2014",
+                "RenewedTo": "30/10/2015",
+                "BusinessLicensingGroupMain": null,
+                "Description": "(71113) የየብስ ትራንስፖርትና ተዛማጅ አገልግሎቶች",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "Maya Town",
+                    "Woreda": "Haramaya Sub City",
+                    "Kebele": "KERENSA",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "0920523655",
+                    "RegularPhone": "0920523655"
+                },
+                "Capital": 300000.0,
+                "Status": 2
+            }
+        ]
+    },
+    "0009140767": {
+        "Tin": "0009140767",
+        "LegalCondtion": "1",
+        "RegNo": "ORO/SEBETA/1/0001372/2010",
+        "RegDate": "16/4/2010",
+        "BusinessName": "NESRO DELEBO MUSA",
+        "BusinessNameAmh": "ነስሮ ደሌቦ ሙሳ",
+        "PaidUpCapital": 125000.0,
+        "Position": null,
+        "ManagerName": "ነስሮ ደሌቦ",
+        "ManagerNameEng": "NESRO DELEBO",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "ORO/SEBETA/04/187790/3200028/2010",
+                "RenewalDate": "16/4/2010",
+                "RenewedFrom": "16/4/2010",
+                "RenewedTo": "30/10/2010",
+                "BusinessLicensingGroupMain": null,
+                "Description": "(71113) የየብስ ትራንስፖርትና ተዛማጅ አገልግሎቶች",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "Sheger City",
+                    "Woreda": "SEBETA SUB CITY",
+                    "Kebele": "Mogole",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "0923926997",
+                    "RegularPhone": "0923926997"
+                },
+                "Capital": 125000.0,
+                "Status": 6
+            },
+            {
+                "LicenceNumber": "ORO/SEBETA/04/187790/1928350/2012",
+                "RenewalDate": "11/4/2015",
+                "RenewedFrom": "30/10/2014",
+                "RenewedTo": "30/10/2015",
+                "BusinessLicensingGroupMain": null,
+                "Description": "የጉዞ አገልግሎት ውክልና እና የኦንላይን የጉዞ ውክልና ሥራዎች",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "Sheger City",
+                    "Woreda": "SEBETA SUB CITY",
+                    "Kebele": "Mogole",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "0923926997",
+                    "RegularPhone": "0923926997"
+                },
+                "Capital": 125000.0,
+                "Status": 2
+            }
+        ]
+    },
+    "0042246337": {
+        "Tin": "0042246337",
+        "LegalCondtion": "1",
+        "RegNo": "ORO/NSH/FT/1/0001296/2009",
+        "RegDate": "10/2/2009",
+        "BusinessName": "YENENASH MABIRATU ABEBE",
+        "BusinessNameAmh": "ያኔነሽ መብራቱ አበበ",
+        "PaidUpCapital": 355365.0,
+        "Position": null,
+        "ManagerName": "ያኔነሽ መብራቱ",
+        "ManagerNameEng": "YENENASH MABIRATU",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "04/323/2814/2009",
+                "RenewalDate": "11/3/2016",
+                "RenewedFrom": "1/11/2015",
+                "RenewedTo": "30/10/2016",
+                "BusinessLicensingGroupMain": null,
+                "Description": "አገር አቋራጭ የህዝብ ትራንስፖርት አገልግሎት",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "NORTH SHEWA",
+                    "Woreda": "FICHE/TOWN/",
+                    "Kebele": "KEBELE 04",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "09",
+                    "RegularPhone": "09"
+                },
+                "Capital": 355365.0,
+                "Status": 1
+            }
+        ]
+    },
+    "0001472018": {
+        "Tin": "0001472018",
+        "LegalCondtion": "1",
+        "RegNo": "ORO/EWL/SS/1/0000455/2005",
+        "RegDate": "2/5/2005",
+        "BusinessName": "JEMAL YESUF MEHAMMED",
+        "BusinessNameAmh": "ጄማለ ዬሱፈ ሞሃሜደ",
+        "PaidUpCapital": 2082806.0,
+        "Position": null,
+        "ManagerName": "ጄማለ ዬሱፈ",
+        "ManagerNameEng": "JEMAL YESUF",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "04/243/1092/2005",
+                "RenewalDate": "9/1/2017",
+                "RenewedFrom": "30/10/2016",
+                "RenewedTo": "30/10/2017",
+                "BusinessLicensingGroupMain": null,
+                "Description": "የብርዕ እና የአገዳ ሰብሎች ጅምላ ንግድ",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "EAST WELLEGA",
+                    "Woreda": "SIBU SIRE",
+                    "Kebele": "LELISA",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "0911743497",
+                    "RegularPhone": "0911743497"
+                },
+                "Capital": 2082806.0,
+                "Status": 5
+            },
+            {
+                "LicenceNumber": "04/243/1094/2005",
+                "RenewalDate": "30/5/2015",
+                "RenewedFrom": "30/5/2015",
+                "RenewedTo": "30/10/2015",
+                "BusinessLicensingGroupMain": null,
+                "Description": "የእህል ወፍጮ አገልግሎት",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "EAST WELLEGA",
+                    "Woreda": "SIBU SIRE",
+                    "Kebele": "LELISA",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "0911743497",
+                    "RegularPhone": "0911743497"
+                },
+                "Capital": 2082806.0,
+                "Status": 6
+            }
+        ]
+    },
+    "0066943232": {
+        "Tin": "0066943232",
+        "LegalCondtion": "1",
+        "RegNo": "ORO/SPZ/Z/1/0002016/2015",
+        "RegDate": "26/4/2015",
+        "BusinessName": "TADESE BERESA EMAMU",
+        "BusinessNameAmh": "ታደሰ በሬሳ እማሙ",
+        "PaidUpCapital": 50000.0,
+        "Position": null,
+        "ManagerName": "ታደሰ በሬሳ",
+        "ManagerNameEng": "TADESE BERESA",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "ORO/SPZ/Z/04/3337/4266168/2015",
+                "RenewalDate": "5/2/2017",
+                "RenewedFrom": "1/11/2016",
+                "RenewedTo": "30/10/2017",
+                "BusinessLicensingGroupMain": null,
+                "Description": "(62115)ትንሽ ሱቅ (ኪዮስክ)",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "NORTH SHEWA",
+                    "Woreda": " Sululta Wereda",
+                    "Kebele": "Darba Town ",
+                    "HouseNo": "Haarawa",
+                    "MobilePhone": "0910983024",
+                    "RegularPhone": "0910983024"
+                },
+                "Capital": 50000.0,
+                "Status": 5
+            }
+        ]
+    },
+    "0000000003": {
+        "Tin": "0000000003",
+        "LegalCondtion": "1",
+        "RegNo": "TG/CT/ADWK/1/0000894/200",
+        "RegDate": "6/9/2005",
+        "BusinessName": "BISHKASH REDA KASA",
+        "BusinessNameAmh": "ብሽካሽ ረዳ ካሳ",
+        "PaidUpCapital": 15000.0,
+        "Position": null,
+        "ManagerName": "የንጉሴ ቦለድ",
+        "ManagerNameEng": "YENGUSA BOLEDE",
+        "MobilePhone": null,
+        "RegularPhone": null,
+        "Businesses": [
+            {
+                "LicenceNumber": "03/135/01/14/2005",
+                "RenewalDate": "22/4/2008",
+                "RenewedFrom": "30/10/2007",
+                "RenewedTo": "30/10/2008",
+                "BusinessLicensingGroupMain": null,
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Amhara",
+                    "Zone": "SOUTH WELLO",
+                    "Woreda": "WOGIDI",
+                    "Kebele": "KEBELE 01",
+                    "HouseNo": "አድስ",
+                    "MobilePhone": "",
+                    "RegularPhone": "0334450147"
+                },
+                "Capital": 15000.0,
+                "Status": 0
+            },
+            {
+                "LicenceNumber": "03/196/07/1120/2006",
+                "RenewalDate": "22/4/2008",
+                "RenewedFrom": "30/10/2007",
+                "RenewedTo": "30/10/2008",
+                "BusinessLicensingGroupMain": null,
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Amhara",
+                    "Zone": "WAG HIMRA",
+                    "Woreda": "GAZGIBLA",
+                    "Kebele": "ZEW MARYAM",
+                    "HouseNo": "አዲስ",
+                    "MobilePhone": "",
+                    "RegularPhone": "0931502879"
+                },
+                "Capital": 500.0,
+                "Status": 0
+            },
+            {
+                "LicenceNumber": "03/77/01/996/2006",
+                "RenewalDate": "22/4/2008",
+                "RenewedFrom": "30/10/2007",
+                "RenewedTo": "30/10/2008",
+                "BusinessLicensingGroupMain": null,
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Amhara",
+                    "Zone": "NORTH GONDAR",
+                    "Woreda": "ADI ARKAY",
+                    "Kebele": "ALI",
+                    "HouseNo": "new471",
+                    "MobilePhone": "0918731853",
+                    "RegularPhone": "0000000000"
+                },
+                "Capital": 20000.0,
+                "Status": 0
+            },
+            {
+                "LicenceNumber": "03/213/06/429/2005",
+                "RenewalDate": "22/4/2008",
+                "RenewedFrom": "30/10/2007",
+                "RenewedTo": "30/10/2008",
+                "BusinessLicensingGroupMain": null,
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Amhara",
+                    "Zone": "BAHIR DAR City",
+                    "Woreda": "BELAY ZELEKE",
+                    "Kebele": "Kebele 07",
+                    "HouseNo": "318",
+                    "MobilePhone": "",
+                    "RegularPhone": "0000000000"
+                },
+                "Capital": 700.0,
+                "Status": 0
+            },
+            {
+                "LicenceNumber": "03/112/01/7089/2006",
+                "RenewalDate": "22/4/2008",
+                "RenewedFrom": "30/10/2007",
+                "RenewedTo": "30/10/2008",
+                "BusinessLicensingGroupMain": null,
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Amhara",
+                    "Zone": "NORTH WELLO",
+                    "Woreda": "MEKET",
+                    "Kebele": "HAMUSIT",
+                    "HouseNo": "አዲስ",
+                    "MobilePhone": "0332110435",
+                    "RegularPhone": "0332110435"
+                },
+                "Capital": 3000.0,
+                "Status": 0
+            },
+            {
+                "LicenceNumber": "03/117/01/4363/2006",
+                "RenewalDate": "22/4/2008",
+                "RenewedFrom": "30/10/2007",
+                "RenewedTo": "30/10/2008",
+                "BusinessLicensingGroupMain": null,
+                "Description": "(71114)የመንገድና የደረቅ ጭነት አገልግሎት",
+                "AddressInfo": {
+                    "Region": "Amhara",
+                    "Zone": "Woldiya City Administration",
+                    "Woreda": "RAS ALI KIFEL KETEMA",
+                    "Kebele": "Admas Bashager",
+                    "HouseNo": "አዲስ",
+                    "MobilePhone": "926760287",
+                    "RegularPhone": "926760287"
+                },
+                "Capital": 200000.0,
+                "Status": 0
+            },
+            {
+                "LicenceNumber": "04/387/05/1808/2007",
+                "RenewalDate": "መረጃ የለውም",
+                "RenewedFrom": "መረጃ የለውም",
+                "RenewedTo": "30/10/2010",
+                "BusinessLicensingGroupMain": null,
+                "Description": "የኮንስትራክሽን ማቴሪያሎች ችርቻሮ ንግድ",
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "EAST HARARGE",
+                    "Woreda": "META",
+                    "Kebele": "Calanko  02",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "09",
+                    "RegularPhone": "09"
+                },
+                "Capital": 3000.0,
+                "Status": 6
+            }
+        ]
+    }
+}

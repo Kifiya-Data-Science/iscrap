@@ -7,9 +7,9 @@ from TGenerator import TGenerator
 class Scraper:
     def __init__(self, base_url, save_frequency=1000):
         self.base_url = base_url
-        self.all_data = {}  # Dictionary to store TIN data in the desired format
-        self.save_frequency = save_frequency  # Save data every 'save_frequency' TINs
-        self.batch_counter = 0  # Counter to track TINs processed in the current batch
+        self.all_data = {}
+        self.save_frequency = save_frequency
+        self.batch_counter = 0
 
     def simulate_button_click(self, tin):
         url = f"{self.base_url}/api/Registration/GetRegistrationInfoByTin/{tin}/am"
@@ -22,7 +22,7 @@ class Scraper:
             'Referer': 'https://etrade.gov.et/business-license-checker',
         }
 
-        for attempt in range(5):  # Retry mechanism with up to 5 attempts
+        for attempt in range(5):
             response = requests.get(url, headers=headers)
             if response.status_code == 204:
                 print(f"Warning: No content found for TIN {tin}.")
@@ -30,24 +30,24 @@ class Scraper:
             elif response.status_code == 200:
                 try:
                     data = response.json()
-                    self.format_data(data, tin)  # Format data for JSON output
+                    self.format_data(data, tin)
                     return data
                 except json.JSONDecodeError as e:
-                    print(f"Error decoding JSON: {e}")
+                    print(f"Error decoding JSON for TIN {tin}: {e}")
                     return None
-            elif response.status_code == 429:  # Handle rate limit error
+            elif response.status_code == 429:
                 print("Rate limit exceeded. Retrying in 5 seconds...")
-                time.sleep(5 * (attempt + 1))  # Exponential backoff
+                time.sleep(5 * (attempt + 1))
             else:
-                print(f"Error: Received {response.status_code} while fetching the page.")
-                print(f"Raw Response Text: {response.text}")
+                print(f"Error: Received {response.status_code} while fetching the page for TIN {tin}.")
+                print(f"Response Text: {response.text}")
                 return None
 
-        print("Failed to fetch data after multiple attempts due to rate limiting.")
+        print(f"Failed to fetch data for TIN {tin} after multiple attempts.")
         return None
 
     def format_data(self, initial_data, tin):
-        # Extract fields from initial data
+        # Check if initial_data contains the expected fields to avoid 'NoneType' errors
         formatted_data = {
             "Tin": tin,
             "LegalCondtion": initial_data.get("LegalCondtion"),
@@ -56,15 +56,16 @@ class Scraper:
             "BusinessName": initial_data.get("BusinessName"),
             "BusinessNameAmh": initial_data.get("BusinessNameAmh"),
             "PaidUpCapital": initial_data.get("PaidUpCapital"),
-            "Position": initial_data["AssociateShortInfos"][0].get("Position") if initial_data["AssociateShortInfos"] else None,
-            "ManagerName": initial_data["AssociateShortInfos"][0].get("ManagerName") if initial_data["AssociateShortInfos"] else None,
-            "ManagerNameEng": initial_data["AssociateShortInfos"][0].get("ManagerNameEng") if initial_data["AssociateShortInfos"] else None,
-            "MobilePhone": initial_data["AssociateShortInfos"][0].get("MobilePhone") if initial_data["AssociateShortInfos"] else None,
-            "RegularPhone": initial_data["AssociateShortInfos"][0].get("RegularPhone") if initial_data["AssociateShortInfos"] else None,
+            # Use safe access for nested fields in AssociateShortInfos
+            "Position": (initial_data.get("AssociateShortInfos", [{}])[0]).get("Position"),
+            "ManagerName": (initial_data.get("AssociateShortInfos", [{}])[0]).get("ManagerName"),
+            "ManagerNameEng": (initial_data.get("AssociateShortInfos", [{}])[0]).get("ManagerNameEng"),
+            "MobilePhone": (initial_data.get("AssociateShortInfos", [{}])[0]).get("MobilePhone"),
+            "RegularPhone": (initial_data.get("AssociateShortInfos", [{}])[0]).get("RegularPhone"),
             "Businesses": []
         }
 
-        # Process each business and send secondary request if LicenseNumber is present
+        # Process each business if present
         for business in initial_data.get("Businesses", []):
             business_data = {
                 "LicenceNumber": business.get("LicenceNumber"),
@@ -72,14 +73,15 @@ class Scraper:
                 "RenewedFrom": business.get("RenewedFrom"),
                 "RenewedTo": business.get("RenewedTo"),
                 "BusinessLicensingGroupMain": business.get("BusinessLicensingGroupMain"),
-                "Description": business["SubGroups"][0].get("Description") if business.get("SubGroups") else None,
+                # Safely access nested fields in SubGroups
+                "Description": (business.get("SubGroups", [{}])[0]).get("Description")
             }
 
-            # Retrieve additional data from the second request
+            # Retrieve additional data if LicenceNumber is available
             if business.get("LicenceNumber"):
                 additional_data = self.send_second_request(business["LicenceNumber"], tin)
                 if additional_data:
-                    business_data.update(additional_data)  # Update business data with AddressInfo, Capital, Status
+                    business_data.update(additional_data)
 
             formatted_data["Businesses"].append(business_data)
 
@@ -117,19 +119,17 @@ class Scraper:
                 print(f"Error decoding JSON for LicenseNo {license_no}: {e}")
                 return None
         else:
-            print(f"Error: Received {response.status_code} while fetching data for LicenseNo {license_no}.")
-            print(f"Raw Response Text: {response.text}")
+            print(f"Error: Received {response.status_code} for LicenseNo {license_no}. Response: {response.text}")
             return None
 
     def save_batch_data(self):
-        # Save JSON file to the output directory
         output_dir = '/app/output'
         os.makedirs(output_dir, exist_ok=True)
         file_path = os.path.join(output_dir, 'scraped_data_all.json')
 
         with open(file_path, 'a') as f:
             json.dump(self.all_data, f, ensure_ascii=False, indent=4)
-            f.write("\n")  # Newline for separating batches
+            f.write("\n")
 
         print(f"Batch of {self.save_frequency} TINs saved to {file_path}")
 

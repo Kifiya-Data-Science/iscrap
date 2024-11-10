@@ -46,8 +46,22 @@ class Scraper:
         print(f"Failed to fetch data for TIN {tin} after multiple attempts.")
         return None
 
+    def safe_get(self, data, *keys):
+        """Safely access nested dictionary keys. Returns None if any key is missing."""
+        for key in keys:
+            if isinstance(data, dict):
+                data = data.get(key)
+            else:
+                return None
+        return data
+
     def format_data(self, initial_data, tin):
-        # Check if initial_data contains the expected fields to avoid 'NoneType' errors
+        # Log the initial_data structure for debugging if it's None or missing fields
+        if not initial_data:
+            print(f"Warning: initial_data is None for TIN {tin}.")
+            return
+
+        # Format the data, using safe_get to avoid NoneType errors
         formatted_data = {
             "Tin": tin,
             "LegalCondtion": initial_data.get("LegalCondtion"),
@@ -56,12 +70,11 @@ class Scraper:
             "BusinessName": initial_data.get("BusinessName"),
             "BusinessNameAmh": initial_data.get("BusinessNameAmh"),
             "PaidUpCapital": initial_data.get("PaidUpCapital"),
-            # Use safe access for nested fields in AssociateShortInfos
-            "Position": (initial_data.get("AssociateShortInfos", [{}])[0]).get("Position"),
-            "ManagerName": (initial_data.get("AssociateShortInfos", [{}])[0]).get("ManagerName"),
-            "ManagerNameEng": (initial_data.get("AssociateShortInfos", [{}])[0]).get("ManagerNameEng"),
-            "MobilePhone": (initial_data.get("AssociateShortInfos", [{}])[0]).get("MobilePhone"),
-            "RegularPhone": (initial_data.get("AssociateShortInfos", [{}])[0]).get("RegularPhone"),
+            "Position": self.safe_get(initial_data, "AssociateShortInfos", 0, "Position"),
+            "ManagerName": self.safe_get(initial_data, "AssociateShortInfos", 0, "ManagerName"),
+            "ManagerNameEng": self.safe_get(initial_data, "AssociateShortInfos", 0, "ManagerNameEng"),
+            "MobilePhone": self.safe_get(initial_data, "AssociateShortInfos", 0, "MobilePhone"),
+            "RegularPhone": self.safe_get(initial_data, "AssociateShortInfos", 0, "RegularPhone"),
             "Businesses": []
         }
 
@@ -73,8 +86,7 @@ class Scraper:
                 "RenewedFrom": business.get("RenewedFrom"),
                 "RenewedTo": business.get("RenewedTo"),
                 "BusinessLicensingGroupMain": business.get("BusinessLicensingGroupMain"),
-                # Safely access nested fields in SubGroups
-                "Description": (business.get("SubGroups", [{}])[0]).get("Description")
+                "Description": self.safe_get(business, "SubGroups", 0, "Description")
             }
 
             # Retrieve additional data if LicenceNumber is available
@@ -160,6 +172,7 @@ def main():
         print("Connection error occurred. Saving all data before exiting.")
     except Exception as e:
         print(f"Unexpected error occurred: {e}. Saving all data before exiting.")
+        scraper.save_batch_data()  # Save any data before exit
 
     if scraper.all_data:
         scraper.save_batch_data()

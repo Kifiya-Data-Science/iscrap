@@ -11,7 +11,7 @@ class TGenerator:
         with open(file_path, mode='r') as file:
             csv_reader = csv.DictReader(file)
             for row in csv_reader:
-                tin_numbers.append(row['Formatted_TIN'])
+                tin_numbers.append(row['Tin'])
         return tin_numbers
 
     def get_next_numbers(self, n):

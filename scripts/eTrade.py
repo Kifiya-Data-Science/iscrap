@@ -5,6 +5,25 @@ import os
 from TGenerator import TGenerator
 
 class Scraper:
+    LEGAL_CONDITION_MAP = {
+        "1": "Private",
+        "2": "Private Limited Company",
+        "3": "Share Company",
+        "4": "Commercial Representative",
+        "5": "Public Enterprise",
+        "6": "Partnership",
+        "7": "Cooperatives Association",
+        "9": "Trade Sectoral Association",
+        "10": "Non Public Enterprise",
+        "11": "NGO",
+        "12": "Branch of A foreign Chamber of Commerce",
+        "13": "Holding Company",
+        "14": "Franchising",
+        "15": "Border Trade",
+        "19": "International Bid Winners Foreign Companies",
+        "21": "One Man Private Limited Company"
+    }
+
     def __init__(self, base_url, save_frequency=1000):
         self.base_url = base_url
         self.all_data = {}
@@ -61,10 +80,14 @@ class Scraper:
             print(f"Warning: initial_data is None for TIN {tin}.")
             return
 
+        # Decode LegalCondtion using LEGAL_CONDITION_MAP
+        legal_condition_code = initial_data.get("LegalCondtion", "")
+        legal_condition_desc = self.LEGAL_CONDITION_MAP.get(legal_condition_code, "Unknown")
+
         # Format the data, using safe_get to avoid NoneType errors
         formatted_data = {
             "Tin": tin,
-            "LegalCondtion": initial_data.get("LegalCondtion"),
+            "LegalCondtion": legal_condition_desc,  # Use decoded description
             "RegNo": initial_data.get("RegNo"),
             "RegDate": initial_data.get("RegDate"),
             "BusinessName": initial_data.get("BusinessName"),

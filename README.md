@@ -121,3 +121,25 @@ The output JSON file (`scraped_data_all.json`) will have the following structure
     ...
 }
 ```
+
+To run your Docker container in the background and ensure it's executed with best practices, you can make a few adjustments:
+
+1. **Run Docker in Detached Mode**: To run a Docker container in the background, use the `-d` flag when you run it.
+2. **Restart Policy**: Set a restart policy in case the container exits due to an error or system restart.
+3. **Dockerfile Improvement**: Make a few minor updates to your Dockerfile for better readability and maintenance.
+
+Here’s the step-by-step solution:
+
+### Updated Commands to Build and Run the Docker Container in Detached Mode
+
+```bash
+# Build the Docker image
+docker build -t my_scraper_app .
+
+# Run the Docker container in detached mode with volume binding
+docker run -d --restart unless-stopped -v "$(pwd)/output:/app/output" my_scraper_app
+```
+
+### Explanation:
+- **`-d`**: Runs the container in detached mode (in the background).
+- **`--restart unless-stopped`**: Ensures that the container restarts automatically if it crashes or if the system restarts, except when manually stopped.

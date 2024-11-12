@@ -24,6 +24,16 @@ class Scraper:
         "21": "One Man Private Limited Company"
     }
 
+    STATUS_MAP = {
+        0: "Two years have passed since it was renewed and cannot be renewed",
+        1: "Can be renewed",
+        2: "It can be renewed with fine",
+        3: " ",
+        4: "",
+        5: "Active It's not renewal time",
+        6: "Canceled"
+    }
+
     def __init__(self, base_url, save_frequency=1000):
         self.base_url = base_url
         self.all_data = {}
@@ -80,8 +90,8 @@ class Scraper:
             print(f"Warning: initial_data is None for TIN {tin}.")
             return
 
-        # Decode LegalCondtion using LEGAL_CONDITION_MAP
-        legal_condition_code = initial_data.get("LegalCondtion", "")
+        # Decode LegalCondtion using LEGAL_CONDITION_MAP and handle None values
+        legal_condition_code = initial_data.get("LegalCondtion")
         legal_condition_desc = self.LEGAL_CONDITION_MAP.get(legal_condition_code, "Unknown")
 
         # Format the data, using safe_get to avoid NoneType errors
@@ -108,7 +118,6 @@ class Scraper:
                 "RenewalDate": business.get("RenewalDate"),
                 "RenewedFrom": business.get("RenewedFrom"),
                 "RenewedTo": business.get("RenewedTo"),
-                "BusinessLicensingGroupMain": business.get("BusinessLicensingGroupMain"),
                 "Description": self.safe_get(business, "SubGroups", 0, "Description")
             }
 
@@ -145,10 +154,15 @@ class Scraper:
         if response.status_code == 200:
             try:
                 data = response.json()
+                
+                # Decode Status using STATUS_MAP and handle None values
+                status_code = data.get("Status")
+                status_description = self.STATUS_MAP.get(status_code, "Unknown") if status_code is not None else "Unknown"
+                
                 return {
                     "AddressInfo": data.get("AddressInfo"),
                     "Capital": data.get("Capital"),
-                    "Status": data.get("Status")
+                    "Status": status_description  # Use decoded description or "Unknown"
                 }
             except json.JSONDecodeError as e:
                 print(f"Error decoding JSON for LicenseNo {license_no}: {e}")
@@ -198,7 +212,7 @@ def main():
         scraper.save_batch_data()  # Save any data before exit
 
     if scraper.all_data:
-        scraper.save_batch_data()
+        scraper.save_batch_data()  # Final save if any data is left
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

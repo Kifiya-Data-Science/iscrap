@@ -28,8 +28,8 @@ class Scraper:
         0: "Two years have passed since it was renewed and cannot be renewed",
         1: "Can be renewed",
         2: "It can be renewed with fine",
-        3: " ",
-        4: "",
+        3: "Unknown",
+        4: "Empity",
         5: "Active It's not renewal time",
         6: "Canceled"
     }

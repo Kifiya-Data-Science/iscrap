@@ -56,46 +56,51 @@ class Scraper:
             'Referer': 'https://etrade.gov.et/business-license-checker',
         }
 
-        max_attempts = 3
+
+        max_attempts = 5
         backoff_time = 2  # Initial wait time for retries
+        max_backoff_time = 60  # Maximum wait time
 
         for attempt in range(max_attempts):
             try:
-                response = requests.get(url, headers=headers)
+                response = requests.get(url, headers=headers, timeout=10)
                 if response.status_code == 204:
                     logger.warning(f"No content found for TIN {tin}.")
                     return None
                 elif response.status_code == 200:
-                    try:
-                        data = response.json()
-                        self.format_data(data, tin)
-                        return data
-                    except json.JSONDecodeError as e:
-                        logger.error(f"Error decoding JSON for TIN {tin}: {e}")
-                        return None
+                    data = response.json()
+                    self.format_data(data, tin)
+                    return data
                 elif response.status_code == 429:
-                    # Exponential backoff for rate limit exceeded
                     logger.warning(f"Rate limit exceeded. Retrying in {backoff_time} seconds (attempt {attempt + 1})...")
                     time.sleep(backoff_time)
-                    backoff_time *= 2  # Exponential backoff
-                else:
-                    logger.error(f"Error: Received {response.status_code} while fetching the page for TIN {tin}. Response Text: {response.text}")
+                    backoff_time = min(backoff_time * 2, max_backoff_time)  # Cap backoff time
+                elif response.status_code == 404:
+                    logger.error(f"TIN {tin} not found (404). Skipping.")
                     return None
+                elif 500 <= response.status_code < 600:
+                    logger.error(f"Server error (status {response.status_code}) for TIN {tin}. Retrying...")
+                    time.sleep(backoff_time)
+                    backoff_time = min(backoff_time * 2, max_backoff_time)
+                else:
+                    logger.error(f"Unexpected status {response.status_code} for TIN {tin}. Response: {response.text}")
+                    return None
+            except requests.exceptions.Timeout:
+                logger.error(f"Request timed out for TIN {tin}. Retrying...")
+                time.sleep(backoff_time)
+                backoff_time = min(backoff_time * 2, max_backoff_time)
             except requests.exceptions.RequestException as e:
                 logger.error(f"Request failed for TIN {tin}: {e}")
                 time.sleep(backoff_time)
-                backoff_time *= 2  # Exponential backoff
+                backoff_time = min(backoff_time * 2, max_backoff_time)
 
         logger.error(f"Failed to fetch data for TIN {tin} after {max_attempts} attempts.")
         return None
 
     def safe_get(self, data, *keys):
-        """Safely access nested dictionary keys. Returns None if any key is missing."""
+        """Safely access nested dictionary keys. Returns None if any key is missing or value is None."""
         for key in keys:
-            if isinstance(data, dict):
-                data = data.get(key)
-            else:
-                return None
+            data = data.get(key) if isinstance(data, dict) else None
         return data
 
     def format_data(self, initial_data, tin):
@@ -115,11 +120,11 @@ class Scraper:
             "BusinessName": initial_data.get("BusinessName"),
             "BusinessNameAmh": initial_data.get("BusinessNameAmh"),
             "PaidUpCapital": initial_data.get("PaidUpCapital"),
-            "Position": self.safe_get(initial_data, "AssociateShortInfos", 0, "Position"),
-            "ManagerName": self.safe_get(initial_data, "AssociateShortInfos", 0, "ManagerName"),
-            "ManagerNameEng": self.safe_get(initial_data, "AssociateShortInfos", 0, "ManagerNameEng"),
-            "MobilePhone": self.safe_get(initial_data, "AssociateShortInfos", 0, "MobilePhone"),
-            "RegularPhone": self.safe_get(initial_data, "AssociateShortInfos", 0, "RegularPhone"),
+            "Position": self.safe_get(initial_data, "AssociateShortInfos", 0, "Position") or "Unknown",
+            "ManagerName": self.safe_get(initial_data, "AssociateShortInfos", 0, "ManagerName") or "Unknown",
+            "ManagerNameEng": self.safe_get(initial_data, "AssociateShortInfos", 0, "ManagerNameEng") or "Unknown",
+            "MobilePhone": self.safe_get(initial_data, "AssociateShortInfos", 0, "MobilePhone") or "Unknown",
+            "RegularPhone": self.safe_get(initial_data, "AssociateShortInfos", 0, "RegularPhone") or "Unknown",
             "Businesses": []
         }
 

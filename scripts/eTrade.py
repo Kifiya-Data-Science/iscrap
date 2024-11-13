@@ -2,7 +2,12 @@ import requests
 import json
 import time
 import os
+import logging
 from TGenerator import TGenerator
+
+# Set up logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 class Scraper:
     LEGAL_CONDITION_MAP = {
@@ -51,28 +56,37 @@ class Scraper:
             'Referer': 'https://etrade.gov.et/business-license-checker',
         }
 
-        for attempt in range(5):
-            response = requests.get(url, headers=headers)
-            if response.status_code == 204:
-                print(f"Warning: No content found for TIN {tin}.")
-                return None
-            elif response.status_code == 200:
-                try:
-                    data = response.json()
-                    self.format_data(data, tin)
-                    return data
-                except json.JSONDecodeError as e:
-                    print(f"Error decoding JSON for TIN {tin}: {e}")
-                    return None
-            elif response.status_code == 429:
-                print("Rate limit exceeded. Retrying in 5 seconds...")
-                time.sleep(5 * (attempt + 1))
-            else:
-                print(f"Error: Received {response.status_code} while fetching the page for TIN {tin}.")
-                print(f"Response Text: {response.text}")
-                return None
+        max_attempts = 3
+        backoff_time = 2  # Initial wait time for retries
 
-        print(f"Failed to fetch data for TIN {tin} after multiple attempts.")
+        for attempt in range(max_attempts):
+            try:
+                response = requests.get(url, headers=headers)
+                if response.status_code == 204:
+                    logger.warning(f"No content found for TIN {tin}.")
+                    return None
+                elif response.status_code == 200:
+                    try:
+                        data = response.json()
+                        self.format_data(data, tin)
+                        return data
+                    except json.JSONDecodeError as e:
+                        logger.error(f"Error decoding JSON for TIN {tin}: {e}")
+                        return None
+                elif response.status_code == 429:
+                    # Exponential backoff for rate limit exceeded
+                    logger.warning(f"Rate limit exceeded. Retrying in {backoff_time} seconds (attempt {attempt + 1})...")
+                    time.sleep(backoff_time)
+                    backoff_time *= 2  # Exponential backoff
+                else:
+                    logger.error(f"Error: Received {response.status_code} while fetching the page for TIN {tin}. Response Text: {response.text}")
+                    return None
+            except requests.exceptions.RequestException as e:
+                logger.error(f"Request failed for TIN {tin}: {e}")
+                time.sleep(backoff_time)
+                backoff_time *= 2  # Exponential backoff
+
+        logger.error(f"Failed to fetch data for TIN {tin} after {max_attempts} attempts.")
         return None
 
     def safe_get(self, data, *keys):
@@ -85,19 +99,17 @@ class Scraper:
         return data
 
     def format_data(self, initial_data, tin):
-        # Log the initial_data structure for debugging if it's None or missing fields
         if not initial_data:
-            print(f"Warning: initial_data is None for TIN {tin}.")
+            logger.warning(f"Initial data is None or empty for TIN {tin}.")
             return
 
         # Decode LegalCondtion using LEGAL_CONDITION_MAP and handle None values
         legal_condition_code = initial_data.get("LegalCondtion")
         legal_condition_desc = self.LEGAL_CONDITION_MAP.get(legal_condition_code, "Unknown")
 
-        # Format the data, using safe_get to avoid NoneType errors
         formatted_data = {
             "Tin": tin,
-            "LegalCondtion": legal_condition_desc,  # Use decoded description
+            "LegalCondtion": legal_condition_desc,
             "RegNo": initial_data.get("RegNo"),
             "RegDate": initial_data.get("RegDate"),
             "BusinessName": initial_data.get("BusinessName"),
@@ -121,7 +133,6 @@ class Scraper:
                 "Description": self.safe_get(business, "SubGroups", 0, "Description")
             }
 
-            # Retrieve additional data if LicenceNumber is available
             if business.get("LicenceNumber"):
                 additional_data = self.send_second_request(business["LicenceNumber"], tin)
                 if additional_data:
@@ -129,7 +140,6 @@ class Scraper:
 
             formatted_data["Businesses"].append(business_data)
 
-        # Store formatted data
         self.all_data[tin] = formatted_data
         self.batch_counter += 1
 
@@ -150,25 +160,23 @@ class Scraper:
             'Referer': 'https://etrade.gov.et/business-license-checker',
         }
 
-        response = requests.get(url, headers=headers)
-        if response.status_code == 200:
-            try:
+        try:
+            response = requests.get(url, headers=headers)
+            if response.status_code == 200:
                 data = response.json()
-                
-                # Decode Status using STATUS_MAP and handle None values
                 status_code = data.get("Status")
                 status_description = self.STATUS_MAP.get(status_code, "Unknown") if status_code is not None else "Unknown"
                 
                 return {
-                    "AddressInfo": data.get("AddressInfo"),
+                    "AddressInfo": data.get("AddressInfo", None),  # Explicitly set to None if missing
                     "Capital": data.get("Capital"),
-                    "Status": status_description  # Use decoded description or "Unknown"
+                    "Status": status_description
                 }
-            except json.JSONDecodeError as e:
-                print(f"Error decoding JSON for LicenseNo {license_no}: {e}")
+            else:
+                logger.error(f"Error: Received {response.status_code} for LicenseNo {license_no}. Response: {response.text}")
                 return None
-        else:
-            print(f"Error: Received {response.status_code} for LicenseNo {license_no}. Response: {response.text}")
+        except requests.exceptions.RequestException as e:
+            logger.error(f"Error requesting additional data for LicenseNo {license_no}: {e}")
             return None
 
     def save_batch_data(self):
@@ -176,11 +184,13 @@ class Scraper:
         os.makedirs(output_dir, exist_ok=True)
         file_path = os.path.join(output_dir, 'scraped_data_all.json')
 
-        with open(file_path, 'a') as f:
-            json.dump(self.all_data, f, ensure_ascii=False, indent=4)
-            f.write("\n")
-
-        print(f"Batch of {self.save_frequency} TINs saved to {file_path}")
+        try:
+            with open(file_path, 'a') as f:
+                json.dump(self.all_data, f, ensure_ascii=False, indent=4)
+                f.write("\n")
+            logger.info(f"Batch of {self.save_frequency} TINs saved to {file_path}")
+        except Exception as e:
+            logger.error(f"Error saving batch data: {e}")
 
 def main():
     base_url = 'https://etrade.gov.et'
@@ -193,26 +203,18 @@ def main():
         while True:
             tins = t_generator.get_next_numbers(batch_size)
             if not tins:
-                print("No more TINs to process.")
+                logger.info("No more TINs to process.")
                 break
             for tin in tins:
                 data = scraper.simulate_button_click(tin)
                 if data:
-                    print(f"Data extracted for TIN {tin}.")
+                    logger.info(f"Data extracted for TIN {tin}.")
                 request_count += 1
-                if request_count >= 10:
-                    print("Pausing for 5 seconds...")
-                    time.sleep(5)
-                    request_count = 0
-
-    except requests.exceptions.ConnectionError as e:
-        print("Connection error occurred. Saving all data before exiting.")
+            logger.info(f"Processed {request_count} TINs.")
+    except KeyboardInterrupt:
+        logger.info("Scraping interrupted by user.")
     except Exception as e:
-        print(f"Unexpected error occurred: {e}. Saving all data before exiting.")
-        scraper.save_batch_data()  # Save any data before exit
+        logger.error(f"Unexpected error occurred: {e}")
 
-    if scraper.all_data:
-        scraper.save_batch_data()  # Final save if any data is left
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

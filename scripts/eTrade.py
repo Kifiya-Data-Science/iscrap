@@ -33,13 +33,13 @@ class Scraper:
         0: "Two years have passed since it was renewed and cannot be renewed",
         1: "Can be renewed",
         2: "It can be renewed with fine",
-        3: "Unknown",
+        3: "N/A",
         4: "Empity",
         5: "Active It's not renewal time",
         6: "Canceled"
     }
 
-    def __init__(self, base_url, save_frequency=1000):
+    def __init__(self, base_url, save_frequency=10):
         self.base_url = base_url
         self.all_data = {}
         self.save_frequency = save_frequency
@@ -55,41 +55,30 @@ class Scraper:
             'Connection': 'keep-alive',
             'Referer': 'https://etrade.gov.et/business-license-checker',
         }
-
-        max_attempts = 5
-        backoff_time = 2  # Initial wait time for retries
-        max_backoff_time = 60  # Maximum wait time
+        max_attempts, backoff_time, max_backoff_time = 5, 2, 60
 
         for attempt in range(max_attempts):
             try:
                 response = requests.get(url, headers=headers, timeout=10)
-                if response.status_code == 204:
-                    logger.warning(f"No content found for TIN {tin}.")
-                    return None
-                elif response.status_code == 200:
+                if response.status_code == 200:
                     data = response.json()
                     self.format_data(data, tin)
                     return data
-                elif response.status_code == 429:
-                    logger.warning(f"Rate limit exceeded. Retrying in {backoff_time} seconds (attempt {attempt + 1})...")
-                    time.sleep(backoff_time)
-                    backoff_time = min(backoff_time * 2, max_backoff_time)  # Cap backoff time
-                elif response.status_code == 404:
-                    logger.error(f"TIN {tin} not found (404). Skipping.")
+                elif response.status_code == 204:
+                    logger.warning(f"No content for TIN {tin}.")
                     return None
-                elif 500 <= response.status_code < 600:
-                    logger.error(f"Server error (status {response.status_code}) for TIN {tin}. Retrying...")
+                elif response.status_code == 404:
+                    logger.error(f"TIN {tin} not found.")
+                    return None
+                elif response.status_code == 429 or 500 <= response.status_code < 600:
+                    logger.warning(f"Server error {response.status_code}. Retrying in {backoff_time}s (attempt {attempt + 1}).")
                     time.sleep(backoff_time)
                     backoff_time = min(backoff_time * 2, max_backoff_time)
                 else:
-                    logger.error(f"Unexpected status {response.status_code} for TIN {tin}. Response: {response.text}")
+                    logger.error(f"Unexpected status {response.status_code} for TIN {tin}: {response.text}")
                     return None
-            except requests.exceptions.Timeout:
-                logger.error(f"Request timed out for TIN {tin}. Retrying...")
-                time.sleep(backoff_time)
-                backoff_time = min(backoff_time * 2, max_backoff_time)
             except requests.exceptions.RequestException as e:
-                logger.error(f"Request failed for TIN {tin}: {e}")
+                logger.error(f"Request for TIN {tin} failed: {e}. Retrying...")
                 time.sleep(backoff_time)
                 backoff_time = min(backoff_time * 2, max_backoff_time)
 
@@ -109,7 +98,15 @@ class Scraper:
 
         # Decode LegalCondtion using LEGAL_CONDITION_MAP and handle None values
         legal_condition_code = initial_data.get("LegalCondtion")
-        legal_condition_desc = self.LEGAL_CONDITION_MAP.get(legal_condition_code, "Unknown")
+        legal_condition_desc = self.LEGAL_CONDITION_MAP.get(legal_condition_code, "N/A")
+
+        # Attempt to access values from multiple paths
+        associate_info = initial_data.get("AssociateShortInfos", [{}])[0]
+        manager_name = associate_info.get("ManagerName") or self.safe_get(initial_data, "AlternativePath", "ManagerName") or "N/A"
+        manager_name_eng = associate_info.get("ManagerNameEng") or self.safe_get(initial_data, "AlternativePath", "ManagerNameEng") or "N/A"
+        position = associate_info.get("Position") or self.safe_get(initial_data, "AlternativePath", "Position") or "N/A"
+        mobile_phone = associate_info.get("MobilePhone") or self.safe_get(initial_data, "AlternativePath", "MobilePhone") or "N/A"
+        regular_phone = associate_info.get("RegularPhone") or self.safe_get(initial_data, "AlternativePath", "RegularPhone") or "N/A"
 
         formatted_data = {
             "Tin": tin,
@@ -119,11 +116,11 @@ class Scraper:
             "BusinessName": initial_data.get("BusinessName"),
             "BusinessNameAmh": initial_data.get("BusinessNameAmh"),
             "PaidUpCapital": initial_data.get("PaidUpCapital"),
-            "Position": self.safe_get(initial_data, "AssociateShortInfos", 0, "Position") or "Unknown",
-            "ManagerName": self.safe_get(initial_data, "AssociateShortInfos", 0, "ManagerName") or "Unknown",
-            "ManagerNameEng": self.safe_get(initial_data, "AssociateShortInfos", 0, "ManagerNameEng") or "Unknown",
-            "MobilePhone": self.safe_get(initial_data, "AssociateShortInfos", 0, "MobilePhone") or "Unknown",
-            "RegularPhone": self.safe_get(initial_data, "AssociateShortInfos", 0, "RegularPhone") or "Unknown",
+            "Position": position,
+            "ManagerName": manager_name,
+            "ManagerNameEng": manager_name_eng,
+            "MobilePhone": mobile_phone,
+            "RegularPhone": regular_phone,
             "Businesses": []
         }
 
@@ -169,7 +166,7 @@ class Scraper:
             if response.status_code == 200:
                 data = response.json()
                 status_code = data.get("Status")
-                status_description = self.STATUS_MAP.get(status_code, "Unknown") if status_code is not None else "Unknown"
+                status_description = self.STATUS_MAP.get(status_code, "N/A") if status_code is not None else "N/A"
                 
                 return {
                     "AddressInfo": data.get("AddressInfo", None),  # Explicitly set to None if missing
@@ -198,7 +195,7 @@ class Scraper:
 
 def main():
     base_url = 'https://etrade.gov.et'
-    scraper = Scraper(base_url, save_frequency=1000)
+    scraper = Scraper(base_url, save_frequency=10)
     t_generator = TGenerator(file_path='/app/data/formatted_tins.csv')
     batch_size = 5
     request_count = 0

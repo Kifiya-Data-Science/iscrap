@@ -56,7 +56,6 @@ class Scraper:
             'Referer': 'https://etrade.gov.et/business-license-checker',
         }
 
-
         max_attempts = 5
         backoff_time = 2  # Initial wait time for retries
         max_backoff_time = 60  # Maximum wait time

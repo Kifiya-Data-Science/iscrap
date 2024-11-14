@@ -67,18 +67,15 @@ class Scraper:
                 elif response.status_code == 204:
                     logger.warning(f"No content for TIN {tin}.")
                     return None
-                elif response.status_code == 404:
-                    logger.error(f"TIN {tin} not found.")
-                    return None
-                elif response.status_code == 429 or 500 <= response.status_code < 600:
-                    logger.warning(f"Server error {response.status_code}. Retrying in {backoff_time}s (attempt {attempt + 1}).")
+                elif response.status_code in [404, 429] or response.status_code >= 500:
+                    logger.warning(f"Server error {response.status_code}. Retrying...")
                     time.sleep(backoff_time)
                     backoff_time = min(backoff_time * 2, max_backoff_time)
                 else:
-                    logger.error(f"Unexpected status {response.status_code} for TIN {tin}: {response.text}")
+                    logger.error(f"Unexpected status {response.status_code} for TIN {tin}.")
                     return None
             except requests.exceptions.RequestException as e:
-                logger.error(f"Request for TIN {tin} failed: {e}. Retrying...")
+                logger.error(f"Request failed for TIN {tin}: {e}")
                 time.sleep(backoff_time)
                 backoff_time = min(backoff_time * 2, max_backoff_time)
 
@@ -180,11 +177,12 @@ class Scraper:
             logger.error(f"Error requesting additional data for LicenseNo {license_no}: {e}")
             return None
 
+    
     def save_batch_data(self):
         output_dir = '/app/output'
         os.makedirs(output_dir, exist_ok=True)
         file_path = os.path.join(output_dir, 'scraped_data_all.json')
-
+        
         try:
             with open(file_path, 'a') as f:
                 json.dump(self.all_data, f, ensure_ascii=False, indent=4)
@@ -198,7 +196,6 @@ def main():
     scraper = Scraper(base_url, save_frequency=10)
     t_generator = TGenerator(file_path='/app/data/formatted_tins.csv')
     batch_size = 5
-    request_count = 0
 
     try:
         while True:
@@ -207,15 +204,16 @@ def main():
                 logger.info("No more TINs to process.")
                 break
             for tin in tins:
-                data = scraper.simulate_button_click(tin)
-                if data:
-                    logger.info(f"Data extracted for TIN {tin}.")
-                request_count += 1
-            logger.info(f"Processed {request_count} TINs.")
+                try:
+                    data = scraper.simulate_button_click(tin)
+                    if data:
+                        logger.info(f"Data extracted for TIN {tin}.")
+                except Exception as e:
+                    logger.error(f"Error processing TIN {tin}: {e}")
     except KeyboardInterrupt:
         logger.info("Scraping interrupted by user.")
     except Exception as e:
-        logger.error(f"Unexpected error occurred: {e}")
+        logger.error(f"Unexpected error occurred in main: {e}")
 
 if __name__ == "__main__":
     main()

@@ -1,3 +1,8 @@
-pandas
 requests
-boto3
+uvicorn
+uvloop
+pydantic
+cachetools
+backoff
+httpx
+aiocache

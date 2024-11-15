@@ -1,3 +1,4 @@
+# Here is my TGenerator.py script
 import csv
 import logging
 import os
@@ -5,10 +6,10 @@ import os
 logger = logging.getLogger(__name__)
 
 class TGenerator:
-    def __init__(self, file_path):
+    def __init__(self, file_path, start_index=0):
         self.file_path = file_path
         self.tin_numbers = self._load_tins_from_csv(file_path)
-        self.index = 0  # Track position in the list
+        self.index = start_index  # Initialize with start_index
 
     def _load_tins_from_csv(self, file_path):
         tin_numbers = []

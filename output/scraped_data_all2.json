@@ -682,3 +682,1059 @@
         ]
     }
 }
+{
+    "0050347695": {
+        "Tin": "0050347695",
+        "LegalCondtion": "Private",
+        "RegNo": "AA/BO/06/1/0002458/2013",
+        "RegDate": "1/13/2008",
+        "BusinessName": "TEZETA ASSEFA DEMISSE",
+        "BusinessNameAmh": "ትዝታ አሰፋ ደምሴ",
+        "PaidUpCapital": 600000.0,
+        "Position": "N/A",
+        "ManagerName": "ትዝታ አሰፋ",
+        "ManagerNameEng": "TEZETA ASSEFA",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "AA/BO/06/14/673/597708/2008",
+                "RenewalDate": "1/13/2008",
+                "RenewedFrom": "1/13/2008",
+                "RenewedTo": "30/10/2009",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Bole",
+                    "Kebele": "06",
+                    "HouseNo": "297/4",
+                    "MobilePhone": "0911605958",
+                    "RegularPhone": "0911605958"
+                },
+                "Capital": 502073.0,
+                "Status": "Canceled"
+            },
+            {
+                "LicenceNumber": "AA/BO/06/14/673/5558073/2013",
+                "RenewalDate": "17/3/2016",
+                "RenewedFrom": "30/10/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Bole",
+                    "Kebele": "06",
+                    "HouseNo": "297/4",
+                    "MobilePhone": "0911605958",
+                    "RegularPhone": "0911605958"
+                },
+                "Capital": 600000.0,
+                "Status": "Can be renewed"
+            }
+        ]
+    },
+    "0016793264": {
+        "Tin": "0016793264",
+        "LegalCondtion": "Private",
+        "RegNo": "AM/NW/WD/1/0000230/2005",
+        "RegDate": "30/8/2005",
+        "BusinessName": "LULSEGED TESFAYE LEGESE",
+        "BusinessNameAmh": "ልኡልሰገድ ተስፋዩ ለገሰ",
+        "PaidUpCapital": 50000.0,
+        "Position": "N/A",
+        "ManagerName": "ልኡልሰገድ ተስፋዩ",
+        "ManagerNameEng": "LULSEGED TESFAYE",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "03/117/03/923/2005",
+                "RenewalDate": "19/7/2014",
+                "RenewedFrom": "30/10/2013",
+                "RenewedTo": "30/10/2014",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Amhara",
+                    "Zone": "Woldiya City Administration",
+                    "Woreda": "RAS ALI KIFEL KETEMA",
+                    "Kebele": "YEJUGENET 02",
+                    "HouseNo": "አዲስ",
+                    "MobilePhone": "0102240970",
+                    "RegularPhone": "0910224097"
+                },
+                "Capital": 50000.0,
+                "Status": "Two years have passed since it was renewed and cannot be renewed"
+            },
+            {
+                "LicenceNumber": "AM/NW/WD/03/117/2018701/2014",
+                "RenewalDate": "25/4/2015",
+                "RenewedFrom": "1/11/2014",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Amhara",
+                    "Zone": "Woldiya City Administration",
+                    "Woreda": "RAS ALI KIFEL KETEMA",
+                    "Kebele": "YEJUGENET 02",
+                    "HouseNo": "አዲስ",
+                    "MobilePhone": "0102240970",
+                    "RegularPhone": "0910224097"
+                },
+                "Capital": 50000.0,
+                "Status": "Can be renewed"
+            }
+        ]
+    },
+    "0079707827": {
+        "Tin": "0079707827",
+        "LegalCondtion": "Private Limited Company",
+        "RegNo": "BTII/DD/2/0005772/2014",
+        "RegDate": "9/12/2014",
+        "BusinessName": "ALPHA ENGINERING CONSULTING PLC",
+        "BusinessNameAmh": "አልፋ ኢንጅነሪንግ አማካሪ ኃላፊነቱ የተወሰነ የግል ማህበር",
+        "PaidUpCapital": 60000.0,
+        "Position": "N/A",
+        "ManagerName": "ዮናስ ተፈሪ",
+        "ManagerNameEng": "YONAS TEFERI",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "BTII/DD/07/674/3977261/2014",
+                "RenewalDate": "9/5/2016",
+                "RenewedFrom": "1/11/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Dire Dawa",
+                    "Zone": "DIRE DAWA",
+                    "Woreda": "DIRE DAWA URBAN",
+                    "Kebele": "kebele 03",
+                    "HouseNo": "1970/1",
+                    "MobilePhone": "0910137244",
+                    "RegularPhone": "0948686295"
+                },
+                "Capital": 60000.0,
+                "Status": "Can be renewed"
+            }
+        ]
+    },
+    "0020987572": {
+        "Tin": "0020987572",
+        "LegalCondtion": "Private",
+        "RegNo": "TG/MK/HAW/1/0005664/2009",
+        "RegDate": "2/10/2009",
+        "BusinessName": "FREWEINI GEBREZGABHER KIDANU",
+        "BusinessNameAmh": "ፍረወይኒ ገብረዝጋበሄር ኪዳኑ",
+        "PaidUpCapital": 2000.0,
+        "Position": "N/A",
+        "ManagerName": "ፍረወይኒ ገብረዝጋበሄር",
+        "ManagerNameEng": "FREWEINI GEBREZGABHER",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "TG/MK/HAW/01/776/1121107/2009",
+                "RenewalDate": "23/11/2011",
+                "RenewedFrom": "30/10/2010",
+                "RenewedTo": "30/10/2015",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Tigray",
+                    "Zone": "MEKELE",
+                    "Woreda": "HAWELTI",
+                    "Kebele": "Ketana2",
+                    "HouseNo": "አዲስ/New",
+                    "MobilePhone": "0914030978",
+                    "RegularPhone": "0914030978"
+                },
+                "Capital": 2000.0,
+                "Status": "It can be renewed with fine"
+            }
+        ]
+    },
+    "0058736309": {
+        "Tin": "0058736309",
+        "LegalCondtion": "Private",
+        "RegNo": "AA/BO/12/1/0004198/2014",
+        "RegDate": "14/1/2014",
+        "BusinessName": "GEZAHEGN BIRHANU GEBREMESKEL",
+        "BusinessNameAmh": "ገዛኸኝ ብርሀኑ ገብረመስቀል",
+        "PaidUpCapital": 15000.0,
+        "Position": "N/A",
+        "ManagerName": "ገዛኸኝ ብርሀኑ",
+        "ManagerNameEng": "GEZAHEGN BIRHANU",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "AA/BO/12/14/673/7404020/2014",
+                "RenewalDate": "14/1/2014",
+                "RenewedFrom": "14/1/2014",
+                "RenewedTo": "30/10/2014",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Bole",
+                    "Kebele": "12",
+                    "HouseNo": "አዲስ/New",
+                    "MobilePhone": "0910667789",
+                    "RegularPhone": "0910667789"
+                },
+                "Capital": 15000.0,
+                "Status": "Two years have passed since it was renewed and cannot be renewed"
+            }
+        ]
+    },
+    "0083902134": {
+        "Tin": "0083902134",
+        "LegalCondtion": "Private",
+        "RegNo": "ORO/WGZ/Z/1/0002275/2016",
+        "RegDate": "14/3/2016",
+        "BusinessName": "BELETE GIRMA ASEFA",
+        "BusinessNameAmh": "በለጤ ግርማ አሰፋ",
+        "PaidUpCapital": 100000.0,
+        "Position": "N/A",
+        "ManagerName": "በለጤ ግርማ",
+        "ManagerNameEng": "BELETE GIRMA",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "ORO/WGZ/Z/04/11130/4724254/2016",
+                "RenewalDate": "28/1/2017",
+                "RenewedFrom": "30/10/2016",
+                "RenewedTo": "30/10/2017",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "WEST GUJII",
+                    "Woreda": "suro Barguda woreda ",
+                    "Kebele": "Surro  01",
+                    "HouseNo": "haaraa",
+                    "MobilePhone": "0919517237",
+                    "RegularPhone": "0919517237"
+                },
+                "Capital": 100000.0,
+                "Status": "Active It's not renewal time"
+            }
+        ]
+    },
+    "0062930615": {
+        "Tin": "0062930615",
+        "LegalCondtion": "Private",
+        "RegNo": "ORO/ARS/HT/1/0002587/2012",
+        "RegDate": "3/2/2012",
+        "BusinessName": "ISHETU TILAHUN DUGUMA",
+        "BusinessNameAmh": "እሹቱ ጥላሁን ዱጉማ",
+        "PaidUpCapital": 20000.0,
+        "Position": "N/A",
+        "ManagerName": "እሹቱ ጥላሁን",
+        "ManagerNameEng": "ISHETU TILAHUN",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "ORO/ARS/HT/04/348/1101028/2012",
+                "RenewalDate": "16/12/2016",
+                "RenewedFrom": "30/10/2016",
+                "RenewedTo": "30/10/2017",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "ARSI",
+                    "Woreda": "HITOSA",
+                    "Kebele": "KEBELE 01",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "0910767772",
+                    "RegularPhone": "0910767772"
+                },
+                "Capital": 20000.0,
+                "Status": "Active It's not renewal time"
+            }
+        ]
+    },
+    "0012598968": {
+        "Tin": "0012598968",
+        "LegalCondtion": "Private",
+        "RegNo": "ORO/BRN/YBW/1/0000279/2008",
+        "RegDate": "19/5/2008",
+        "BusinessName": "SHIBRU DEBERE BIRATU",
+        "BusinessNameAmh": "ሽብሩ ደበሬ ብራቱ",
+        "PaidUpCapital": 100000.0,
+        "Position": "N/A",
+        "ManagerName": "ሽብሩ ደበሬ",
+        "ManagerNameEng": "SHIBRU DEBERE",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "04/416/490/2008",
+                "RenewalDate": "9/5/2016",
+                "RenewedFrom": "30/10/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "BORENA ",
+                    "Woreda": "YABLO",
+                    "Kebele": "HAROBEKE",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "0926586473",
+                    "RegularPhone": "0926586473"
+                },
+                "Capital": 100000.0,
+                "Status": "Can be renewed"
+            },
+            {
+                "LicenceNumber": "04/416/01/334/2007",
+                "RenewalDate": "3/4/2015",
+                "RenewedFrom": "3/4/2015",
+                "RenewedTo": "30/10/2015",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "BORENA ",
+                    "Woreda": "YABLO",
+                    "Kebele": "KEBELE 01",
+                    "HouseNo": "0464460850",
+                    "MobilePhone": "0464460850",
+                    "RegularPhone": "0464460850"
+                },
+                "Capital": 6000.0,
+                "Status": "It can be renewed with fine"
+            },
+            {
+                "LicenceNumber": "ORO/BRN/YBT/04/416/3706275/2012",
+                "RenewalDate": "13/12/2012",
+                "RenewedFrom": "13/12/2012",
+                "RenewedTo": "30/10/2013",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "BORENA ",
+                    "Woreda": "YABLO",
+                    "Kebele": "KEBELE 01",
+                    "HouseNo": "0464460850",
+                    "MobilePhone": "0464460850",
+                    "RegularPhone": "0464460850"
+                },
+                "Capital": 100000.0,
+                "Status": "Two years have passed since it was renewed and cannot be renewed"
+            },
+            {
+                "LicenceNumber": "ORO/BRN/YBW/04/416/51759621/2011",
+                "RenewalDate": "7/9/2011",
+                "RenewedFrom": "7/9/2011",
+                "RenewedTo": "30/10/2011",
+                "Description": null,
+                "AddressInfo": null,
+                "Capital": 6000.0,
+                "Status": "Canceled"
+            },
+            {
+                "LicenceNumber": "04/416/01/332/2007",
+                "RenewalDate": "3/4/2015",
+                "RenewedFrom": "30/10/2014",
+                "RenewedTo": "30/10/2015",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "BORENA ",
+                    "Woreda": "YABLO",
+                    "Kebele": "KEBELE 01",
+                    "HouseNo": "0464460850",
+                    "MobilePhone": "0464460850",
+                    "RegularPhone": "0464460850"
+                },
+                "Capital": 100000.0,
+                "Status": "It can be renewed with fine"
+            },
+            {
+                "LicenceNumber": "MT/AA/10/876453/4790888/2016",
+                "RenewalDate": "19/4/2016",
+                "RenewedFrom": "19/4/2016",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Sidama",
+                    "Zone": "HAWASSA CITY  ",
+                    "Woreda": "TULA",
+                    "Kebele": "TULLO",
+                    "HouseNo": "haraa",
+                    "MobilePhone": "0926506473",
+                    "RegularPhone": "0926506473"
+                },
+                "Capital": 100000.0,
+                "Status": "Can be renewed"
+            },
+            {
+                "LicenceNumber": "ORO/BRN/YBT/04/416/4210900/2013",
+                "RenewalDate": "29/2/2017",
+                "RenewedFrom": "30/10/2016",
+                "RenewedTo": "30/10/2017",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "BORENA ",
+                    "Woreda": "YABLO",
+                    "Kebele": "KEBELE 01",
+                    "HouseNo": "0464460850",
+                    "MobilePhone": "0464460850",
+                    "RegularPhone": "0464460850"
+                },
+                "Capital": 6000.0,
+                "Status": "Active It's not renewal time"
+            },
+            {
+                "LicenceNumber": "ORO/BRN/YBW/04/416/51759353/2011",
+                "RenewalDate": "7/9/2011",
+                "RenewedFrom": "7/9/2011",
+                "RenewedTo": "30/10/2011",
+                "Description": null,
+                "AddressInfo": null,
+                "Capital": 6000.0,
+                "Status": "Canceled"
+            },
+            {
+                "LicenceNumber": "ORO/BRN/YBT/04/416/2803185/2012",
+                "RenewalDate": "12/9/2012",
+                "RenewedFrom": "12/9/2012",
+                "RenewedTo": "30/10/2012",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "BORENA ",
+                    "Woreda": "YABLO",
+                    "Kebele": "KEBELE 01",
+                    "HouseNo": "0464460850",
+                    "MobilePhone": "0464460850",
+                    "RegularPhone": "0464460850"
+                },
+                "Capital": 200000.0,
+                "Status": "Two years have passed since it was renewed and cannot be renewed"
+            },
+            {
+                "LicenceNumber": "ORO/BRN/YBW/04/416/217109/2014",
+                "RenewalDate": "10/2/2014",
+                "RenewedFrom": "10/2/2014",
+                "RenewedTo": "30/10/2014",
+                "Description": null,
+                "AddressInfo": null,
+                "Capital": 100000.0,
+                "Status": "Two years have passed since it was renewed and cannot be renewed"
+            },
+            {
+                "LicenceNumber": "ORO/BRN/YBT/04/416/3706033/2012",
+                "RenewalDate": "5/3/2015",
+                "RenewedFrom": "30/10/2014",
+                "RenewedTo": "30/10/2015",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "BORENA ",
+                    "Woreda": "YABLO",
+                    "Kebele": "KEBELE 01",
+                    "HouseNo": "0464460850",
+                    "MobilePhone": "0464460850",
+                    "RegularPhone": "0464460850"
+                },
+                "Capital": 100000.0,
+                "Status": "It can be renewed with fine"
+            }
+        ]
+    },
+    "0000016054": {
+        "Tin": "0000016054",
+        "LegalCondtion": "Private Limited Company",
+        "RegNo": "BL/AA/2/0000850/2004",
+        "RegDate": "16/12/2004",
+        "BusinessName": "TEDCON PLC",
+        "BusinessNameAmh": "ተድኮን ኃ የተ የግ ማህበር",
+        "PaidUpCapital": 507900.0,
+        "Position": "N/A",
+        "ManagerName": "ተድላ እርገጤ",
+        "ManagerNameEng": "TEDLA ERGATA",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "14/673/5221/2004",
+                "RenewalDate": "17/4/2016",
+                "RenewedFrom": "30/10/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Bole",
+                    "Kebele": "01",
+                    "HouseNo": "1482",
+                    "MobilePhone": "0116260644",
+                    "RegularPhone": "0116260644"
+                },
+                "Capital": 507900.0,
+                "Status": "Can be renewed"
+            }
+        ]
+    },
+    "0067124928": {
+        "Tin": "0067124928",
+        "LegalCondtion": "Private",
+        "RegNo": "AM/WG/GJK/1/0001493/2014",
+        "RegDate": "4/4/2014",
+        "BusinessName": "MELKAMU BELSITE TILA",
+        "BusinessNameAmh": "መልካሙ በልስቲ ጥላ",
+        "PaidUpCapital": 2000.0,
+        "Position": "N/A",
+        "ManagerName": "መልካሙ በልስቲ",
+        "ManagerNameEng": "MELKAMU BELSITE",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "AM/WG/GJK/03/190/814812/2014",
+                "RenewalDate": "5/3/2015",
+                "RenewedFrom": "30/10/2014",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Amhara",
+                    "Zone": "WEST GOJAM",
+                    "Woreda": "GONJQOLOLA",
+                    "Kebele": "KEBELE 01",
+                    "HouseNo": "አዲስ/New",
+                    "MobilePhone": "0978774283",
+                    "RegularPhone": "0978774283"
+                },
+                "Capital": 2000.0,
+                "Status": "Can be renewed"
+            }
+        ]
+    }
+}
+{
+    "0000016067": {
+        "Tin": "0000016067",
+        "LegalCondtion": "Private Limited Company",
+        "RegNo": "MT/AA/2/0008548/2004",
+        "RegDate": "28/3/2004",
+        "BusinessName": "FIKAH TREDING PLC",
+        "BusinessNameAmh": "ፈከህ ትሬዲንግ ኃላ/ የተ/ የግ /ማህበር",
+        "PaidUpCapital": 5434000.0,
+        "Position": "N/A",
+        "ManagerName": "ዙቤር አህመድ",
+        "ManagerNameEng": "ZUBER AHMED",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "AR/AA/14/671/4011916/2007",
+                "RenewalDate": "8/3/2016",
+                "RenewedFrom": "1/11/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Arada",
+                    "Kebele": "01",
+                    "HouseNo": "w 2 k 14 B-1",
+                    "MobilePhone": "0911205415",
+                    "RegularPhone": "0911205415"
+                },
+                "Capital": 5434000.0,
+                "Status": "Can be renewed"
+            },
+            {
+                "LicenceNumber": "14/671/376/2004",
+                "RenewalDate": "መረጃ የለውም",
+                "RenewedFrom": "መረጃ የለውም",
+                "RenewedTo": "መረጃ የለውም",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Addis Ketema",
+                    "Kebele": "01",
+                    "HouseNo": "1774",
+                    "MobilePhone": "911205415",
+                    "RegularPhone": "911205415"
+                },
+                "Capital": 3528000.0,
+                "Status": "Two years have passed since it was renewed and cannot be renewed"
+            },
+            {
+                "LicenceNumber": "14/671/579523/2006",
+                "RenewalDate": "4/4/2006",
+                "RenewedFrom": "4/4/2006",
+                "RenewedTo": "30/10/2006",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Addis Ketema",
+                    "Kebele": "01",
+                    "HouseNo": "1774",
+                    "MobilePhone": "911205415",
+                    "RegularPhone": "911205415"
+                },
+                "Capital": 3528000.0,
+                "Status": "Two years have passed since it was renewed and cannot be renewed"
+            },
+            {
+                "LicenceNumber": "AR/AA/14/670/4011938/2007",
+                "RenewalDate": "6/3/2016",
+                "RenewedFrom": "1/11/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Arada",
+                    "Kebele": "01",
+                    "HouseNo": "w 2 k 14 B-1",
+                    "MobilePhone": "0911205415",
+                    "RegularPhone": "0911205415"
+                },
+                "Capital": 3528000.0,
+                "Status": "Can be renewed"
+            },
+            {
+                "LicenceNumber": "MT/AA/14/670/13925/2007",
+                "RenewalDate": "18/3/2016",
+                "RenewedFrom": "30/10/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Arada",
+                    "Kebele": "01",
+                    "HouseNo": "w 2 k 14 B-1",
+                    "MobilePhone": "",
+                    "RegularPhone": "558851"
+                },
+                "Capital": 3528000.0,
+                "Status": "Can be renewed"
+            },
+            {
+                "LicenceNumber": "14/669/32944/2004",
+                "RenewalDate": "18/3/2016",
+                "RenewedFrom": "30/10/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Arada",
+                    "Kebele": "01",
+                    "HouseNo": "w 2 k 14 B-1",
+                    "MobilePhone": "558851",
+                    "RegularPhone": "558851"
+                },
+                "Capital": 3528000.0,
+                "Status": "Can be renewed"
+            }
+        ]
+    },
+    "0088096452": {
+        "Tin": "0088096452",
+        "LegalCondtion": "Private",
+        "RegNo": "NL/AA/1/0033998/2016",
+        "RegDate": "5/6/2016",
+        "BusinessName": "Yonatan Seyfu  Woldemichael",
+        "BusinessNameAmh": "ዮናታን ሰይፉ ወልደሚካኤል",
+        "PaidUpCapital": 50000.0,
+        "Position": "N/A",
+        "ManagerName": "ዮናታን ሰይፉ",
+        "ManagerNameEng": "Yonatan Seyfu",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "NL/AA/14/666/5097360/2016",
+                "RenewalDate": "29/9/2016",
+                "RenewedFrom": "29/9/2016",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Nefas Silk-Lafto",
+                    "Kebele": "01",
+                    "HouseNo": "Addis ",
+                    "MobilePhone": "0941928680",
+                    "RegularPhone": "0911867740"
+                },
+                "Capital": 50000.0,
+                "Status": "Can be renewed"
+            }
+        ]
+    },
+    "0050347720": {
+        "Tin": "0050347720",
+        "LegalCondtion": "Private",
+        "RegNo": "BTII/DD/1/0014629/2016",
+        "RegDate": "14/8/2016",
+        "BusinessName": "YILIKAL BEZE GETAHUN",
+        "BusinessNameAmh": "ይልቃል በዜ ጌታሁን",
+        "PaidUpCapital": 5000.0,
+        "Position": "N/A",
+        "ManagerName": "ይልቃል በዜ",
+        "ManagerNameEng": "YILIKAL BEZE",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "BTII/DD/07/674/5032693/2016",
+                "RenewalDate": "15/8/2016",
+                "RenewedFrom": "15/8/2016",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Dire Dawa",
+                    "Zone": "DIRE DAWA",
+                    "Woreda": "DIRE DAWA URBAN",
+                    "Kebele": "kebele 02",
+                    "HouseNo": "አዲስ",
+                    "MobilePhone": "0951216723",
+                    "RegularPhone": "0911587158"
+                },
+                "Capital": 5000.0,
+                "Status": "Can be renewed"
+            }
+        ]
+    },
+    "0020987598": {
+        "Tin": "0020987598",
+        "LegalCondtion": "Private",
+        "RegNo": "AM/DES/ARP/1/0000814/2",
+        "RegDate": "24/10/2005",
+        "BusinessName": "KEMAL ESHETU YIMER",
+        "BusinessNameAmh": "ከማል እሸቱ ይመር",
+        "PaidUpCapital": 5000.0,
+        "Position": "N/A",
+        "ManagerName": "ከማል እሸቱ",
+        "ManagerNameEng": "KEMAL ESHETU",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "AM/DES/03/AD2/4231449/2015",
+                "RenewalDate": "29/4/2016",
+                "RenewedFrom": "1/11/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Amhara",
+                    "Zone": "DESSIE CITY",
+                    "Woreda": "Arada",
+                    "Kebele": "KEBELE 03",
+                    "HouseNo": "1154",
+                    "MobilePhone": "",
+                    "RegularPhone": "0914073934"
+                },
+                "Capital": 5000.0,
+                "Status": "Can be renewed"
+            },
+            {
+                "LicenceNumber": "AM/DES/03/AD2/8670065/2017",
+                "RenewalDate": "10/1/2017",
+                "RenewedFrom": "10/1/2017",
+                "RenewedTo": "30/10/2017",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Amhara",
+                    "Zone": "DESSIE CITY",
+                    "Woreda": "Arada",
+                    "Kebele": "KEBELE 03",
+                    "HouseNo": "00670",
+                    "MobilePhone": "",
+                    "RegularPhone": "0914073934"
+                },
+                "Capital": 5000.0,
+                "Status": "Active It's not renewal time"
+            }
+        ]
+    },
+    "0004210385": {
+        "Tin": "0004210385",
+        "LegalCondtion": "Private",
+        "RegNo": "TG/EZ/FRE/1/0007304/200",
+        "RegDate": "12/7/2006",
+        "BusinessName": "NUGUSE GEBRE GEBREKIDAN",
+        "BusinessNameAmh": "ንጉሰ ገብረ ገብረኪዳን",
+        "PaidUpCapital": 5000.0,
+        "Position": "N/A",
+        "ManagerName": "ንጉሰ ገብረ",
+        "ManagerNameEng": "NUGUSE GEBRE",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "01/24/01/25854/2006",
+                "RenewalDate": "10/11/2011",
+                "RenewedFrom": "30/10/2011",
+                "RenewedTo": "30/10/2015",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Tigray",
+                    "Zone": "EASTERN TIGRAY ",
+                    "Woreda": "SAESI TSADAMBA",
+                    "Kebele": "04",
+                    "HouseNo": "113",
+                    "MobilePhone": "0914210400",
+                    "RegularPhone": "0914210400"
+                },
+                "Capital": 5000.0,
+                "Status": "It can be renewed with fine"
+            }
+        ]
+    },
+    "0000016082": {
+        "Tin": "0000016082",
+        "LegalCondtion": "Private Limited Company",
+        "RegNo": "AR/AA/2/0001924/2005",
+        "RegDate": "12/2/2005",
+        "BusinessName": "GRAPHIC PRINTERS PLC",
+        "BusinessNameAmh": "ግራፊክ አታሚዎች ኃላፊነቱ የተወሰነ የግል ማህበር",
+        "PaidUpCapital": 17473000.0,
+        "Position": "N/A",
+        "ManagerName": "ዮሐንስ ተስፋዬ",
+        "ManagerNameEng": "YOHANNSE TESFAYE",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "14/670/728278/2006",
+                "RenewalDate": "25/3/2012",
+                "RenewedFrom": "30/10/2011",
+                "RenewedTo": "30/10/2012",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Arada",
+                    "Kebele": "01",
+                    "HouseNo": "450",
+                    "MobilePhone": "",
+                    "RegularPhone": "0111551999"
+                },
+                "Capital": 15000000.0,
+                "Status": "Two years have passed since it was renewed and cannot be renewed"
+            },
+            {
+                "LicenceNumber": "MT/AA/14/670/11167/2006",
+                "RenewalDate": "25/4/2016",
+                "RenewedFrom": "1/11/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Arada",
+                    "Kebele": "01",
+                    "HouseNo": "450",
+                    "MobilePhone": "0911204258",
+                    "RegularPhone": "011551999"
+                },
+                "Capital": 17473000.0,
+                "Status": "Can be renewed"
+            },
+            {
+                "LicenceNumber": "14/670/9331/2005",
+                "RenewalDate": "20/4/2016",
+                "RenewedFrom": "1/11/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Arada",
+                    "Kebele": "01",
+                    "HouseNo": "450",
+                    "MobilePhone": "",
+                    "RegularPhone": "0111551999"
+                },
+                "Capital": 17473000.0,
+                "Status": "Can be renewed"
+            },
+            {
+                "LicenceNumber": "MT/AA/14/670/51739897/2011",
+                "RenewalDate": "25/4/2016",
+                "RenewedFrom": "1/11/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Arada",
+                    "Kebele": "01",
+                    "HouseNo": "450",
+                    "MobilePhone": "",
+                    "RegularPhone": "0111551999"
+                },
+                "Capital": 17473000.0,
+                "Status": "Can be renewed"
+            }
+        ]
+    },
+    "0088096465": {
+        "Tin": "0088096465",
+        "LegalCondtion": "Private",
+        "RegNo": "BTII/DD/1/0012874/2016",
+        "RegDate": "3/5/2016",
+        "BusinessName": "Liban Warsame  Muhumed",
+        "BusinessNameAmh": "ሊባን ወርሰሜ ሙሁመድ",
+        "PaidUpCapital": 1000.0,
+        "Position": "N/A",
+        "ManagerName": "ሊባን ወርሰሜ",
+        "ManagerNameEng": "Liban Warsame",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "BTII/DD/07/674/4869497/2016",
+                "RenewalDate": "4/6/2016",
+                "RenewedFrom": "4/6/2016",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Dire Dawa",
+                    "Zone": "DIRE DAWA",
+                    "Woreda": "DIRE DAWA URBAN",
+                    "Kebele": "KEBELE 08",
+                    "HouseNo": "2558",
+                    "MobilePhone": "0948606434",
+                    "RegularPhone": "0948606434"
+                },
+                "Capital": 1000.0,
+                "Status": "Can be renewed"
+            }
+        ]
+    },
+    "0025181906": {
+        "Tin": "0025181906",
+        "LegalCondtion": "Private",
+        "RegNo": "BL/AA/1/0034785/2015",
+        "RegDate": "30/6/2015",
+        "BusinessName": "MESERET ALI MEKONNEN",
+        "BusinessNameAmh": "መሰረት አሊ መኮንን",
+        "PaidUpCapital": 50000.0,
+        "Position": "N/A",
+        "ManagerName": "መሰረት አሊ",
+        "ManagerNameEng": "MESERET ALI",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "BL/AA/14/673/4503857/2015",
+                "RenewalDate": "14/2/2016",
+                "RenewedFrom": "1/11/2015",
+                "RenewedTo": "30/10/2016",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Bole",
+                    "Kebele": "13",
+                    "HouseNo": "129",
+                    "MobilePhone": "0943869865",
+                    "RegularPhone": "0901188081"
+                },
+                "Capital": 50000.0,
+                "Status": "Can be renewed"
+            }
+        ]
+    },
+    "0050347733": {
+        "Tin": "0050347733",
+        "LegalCondtion": "Private",
+        "RegNo": "TG/ET/ADI/1/0007005/2008",
+        "RegDate": "19/12/2008",
+        "BusinessName": "LWAM GEBREYESUS TAMRAT",
+        "BusinessNameAmh": "ልዋም ገብረየሱስ ታምራት",
+        "PaidUpCapital": 15000.0,
+        "Position": "N/A",
+        "ManagerName": "ልዋም ገብረየሱስ",
+        "ManagerNameEng": "LWAM GEBREYESUS",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "TG/ET/ADI/01/29/1052633/2008",
+                "RenewalDate": "2/11/2012",
+                "RenewedFrom": "30/10/2012",
+                "RenewedTo": "30/10/2015",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Tigray",
+                    "Zone": "EASTERN TIGRAY ",
+                    "Woreda": "ADIGRAT/TOWN/",
+                    "Kebele": "Kebele5",
+                    "HouseNo": "አዲስ/New",
+                    "MobilePhone": "0914735477",
+                    "RegularPhone": "0914735477"
+                },
+                "Capital": 15000.0,
+                "Status": "It can be renewed with fine"
+            }
+        ]
+    },
+    "0016793302": {
+        "Tin": "0016793302",
+        "LegalCondtion": "Private",
+        "RegNo": "ORO/SPZ/SHW/1/0001879/2014",
+        "RegDate": "2/4/2005",
+        "BusinessName": "MESFIN SHIMELIS BELAY",
+        "BusinessNameAmh": "መስፍን ሽመልስ በላይ",
+        "PaidUpCapital": 118552.0,
+        "Position": "N/A",
+        "ManagerName": "መስፍን ሽመልስ",
+        "ManagerNameEng": "MESFIN SHEMELES",
+        "MobilePhone": "N/A",
+        "RegularPhone": "N/A",
+        "Businesses": [
+            {
+                "LicenceNumber": "ORO/SPZ/SHW/14/666/9041300/2011",
+                "RenewalDate": "19/11/2016",
+                "RenewedFrom": "1/11/2016",
+                "RenewedTo": "30/10/2017",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Oromia",
+                    "Zone": "SOUTH WEST SHEWA ",
+                    "Woreda": "Sebeta Hawas",
+                    "Kebele": "01",
+                    "HouseNo": "Haarawa/New",
+                    "MobilePhone": "0911773279",
+                    "RegularPhone": "0911773279"
+                },
+                "Capital": 118552.0,
+                "Status": "Active It's not renewal time"
+            },
+            {
+                "LicenceNumber": "AA/NL/W02/14/666/323460/2005",
+                "RenewalDate": "20/11/2008",
+                "RenewedFrom": "20/11/2008",
+                "RenewedTo": "30/10/2009",
+                "Description": null,
+                "AddressInfo": {
+                    "Region": "Addis Ababa",
+                    "Zone": "Addis Ababa",
+                    "Woreda": "Nefas Silk-Lafto",
+                    "Kebele": "02",
+                    "HouseNo": "አዲስ",
+                    "MobilePhone": "0911773279",
+                    "RegularPhone": "0911773279"
+                },
+                "Capital": 58452.0,
+                "Status": "Canceled"
+            }
+        ]
+    }
+}

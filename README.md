@@ -134,12 +134,12 @@ Here’s the step-by-step solution:
 
 ```bash
 # Build the Docker image
-docker build -t my_scraper_httpx_app .
+docker build -t my_scraper_app .
 
 # Run the Docker container in detached mode with volume binding
 docker run -d --restart unless-stopped -v "$(pwd)/output:/app/output" my_scraper_httpx_app
 docker run -v "$(pwd)/output:/app/output" my_scraper_httpx_app
-docker run -d -v "$(pwd)/output:/app/output" my_scraper_httpx_app
+docker run -d -v "$(pwd)/output:/app/output" my_scraper_app
 
 ```
 

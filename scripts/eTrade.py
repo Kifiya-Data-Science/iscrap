@@ -195,7 +195,7 @@ class Scraper:
 def main():
     base_url = 'https://etrade.gov.et'
     scraper = Scraper(base_url, save_frequency=10)
-    start_index = 499995
+    start_index = 499998
     t_generator = TGenerator(file_path='./data/formatted_tins.csv', start_index=start_index)
     batch_size = 5
 

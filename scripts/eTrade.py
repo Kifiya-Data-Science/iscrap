@@ -40,7 +40,7 @@ class Scraper:
         6: "Canceled"
     }
 
-    def __init__(self, base_url, save_frequency=10):
+    def __init__(self, base_url, save_frequency=500):
         self.base_url = base_url
         self.all_data = {}
         self.save_frequency = save_frequency
@@ -194,7 +194,7 @@ class Scraper:
 
 def main():
     base_url = 'https://etrade.gov.et'
-    scraper = Scraper(base_url, save_frequency=10)
+    scraper = Scraper(base_url, save_frequency=500)
     start_index = 499998
     t_generator = TGenerator(file_path='./data/formatted_tins.csv', start_index=start_index)
     batch_size = 5

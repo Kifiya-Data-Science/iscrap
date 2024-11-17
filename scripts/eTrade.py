@@ -182,7 +182,7 @@ class Scraper:
     def save_batch_data(self):
         output_dir = '/app/output'
         os.makedirs(output_dir, exist_ok=True)
-        file_path = os.path.join(output_dir, 'scraped_data_all3.json')
+        file_path = os.path.join(output_dir, 'scraped_data_half_all.json')
         
         try:
             with open(file_path, 'a') as f:
@@ -195,7 +195,7 @@ class Scraper:
 def main():
     base_url = 'https://etrade.gov.et'
     scraper = Scraper(base_url, save_frequency=10)
-    start_index = 40640
+    start_index = 499995
     t_generator = TGenerator(file_path='./data/formatted_tins.csv', start_index=start_index)
     batch_size = 5
 

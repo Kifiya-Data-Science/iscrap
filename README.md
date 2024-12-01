@@ -40,6 +40,8 @@ Run the following command to build the Docker image for the scraper:
 
 ```bash
 docker build -t my_scraper_app .
+docker build -t my_scraper_second_app .
+
 ```
 
 This command:
@@ -51,7 +53,9 @@ This command:
 Once the image is built, run the container with the following command:
 
 ```bash
-docker run -v "$(pwd)/output:/app/output" my_scraper_app
+docker run -d -v "$(pwd)/output:/app/output" my_scraper_app
+docker run -d -v "$(pwd)/output:/app/output" my_scraper_second_app
+
 ```
 
 This command:

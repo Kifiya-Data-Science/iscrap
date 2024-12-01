@@ -45,6 +45,8 @@ class Scraper:
         self.all_data = {}
         self.save_frequency = save_frequency
         self.batch_counter = 0
+        self.append_counter = 0  # Tracks the number of appends to the current file
+        self.file_index = 1      # Tracks the file number
 
     def simulate_button_click(self, tin):
         url = f"{self.base_url}/api/Registration/GetRegistrationInfoByTin/{tin}/am"
@@ -180,22 +182,32 @@ class Scraper:
 
     
     def save_batch_data(self):
+        # Determine the current file name
         output_dir = '/app/output'
         os.makedirs(output_dir, exist_ok=True)
-        file_path = os.path.join(output_dir, 'scraped_data_half_all.json')
-        
+        file_path = os.path.join(output_dir, f'eTrade_data_firstb_{self.file_index}.json')
+
         try:
             with open(file_path, 'a') as f:
                 json.dump(self.all_data, f, ensure_ascii=False, indent=4)
                 f.write("\n")
             logger.info(f"Batch of {self.save_frequency} TINs saved to {file_path}")
+            
+            # Increment the append counter
+            self.append_counter += 1
+
+            # Check if the file has been appended 20 times
+            if self.append_counter >= 20:
+                logger.info(f"File {file_path} reached 20 appends. Creating a new file.")
+                self.append_counter = 0  # Reset the append counter
+                self.file_index += 1     # Increment the file index
         except Exception as e:
             logger.error(f"Error saving batch data: {e}")
 
 def main():
     base_url = 'https://etrade.gov.et'
     scraper = Scraper(base_url, save_frequency=500)
-    start_index = 499998
+    start_index = 154592
     t_generator = TGenerator(file_path='./data/formatted_tins.csv', start_index=start_index)
     batch_size = 5
 

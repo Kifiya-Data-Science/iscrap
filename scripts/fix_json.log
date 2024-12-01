@@ -1,0 +1,90 @@
+2024-11-21 13:32:46,997 - INFO - Processing file: ../output/scraped_data_all.json
+2024-11-21 13:32:47,061 - DEBUG - Read 13518288 characters from file: ../output/scraped_data_all.json
+2024-11-21 13:32:48,504 - DEBUG - Fixed keys without double quotes.
+2024-11-21 13:32:48,670 - DEBUG - Removed trailing commas.
+2024-11-21 13:32:48,670 - DEBUG - Validation failed after fixing keys: Extra data: line 379 column 1 (char 13507)
+2024-11-21 13:32:48,802 - DEBUG - Removed non-JSON lines.
+2024-11-21 13:32:48,822 - DEBUG - Validation failed after removing non-JSON lines: Expecting property name enclosed in double quotes: line 2 column 13 (char 14)
+2024-11-21 13:32:48,823 - DEBUG - Added missing commas between objects.
+2024-11-21 13:32:48,823 - DEBUG - Validation failed after adding commas: Expecting property name enclosed in double quotes: line 2 column 13 (char 14)
+2024-11-21 13:32:48,823 - DEBUG - Wrapped content in an array.
+2024-11-21 13:32:48,823 - ERROR - JSONDecodeError: Expecting property name enclosed in double quotes at line 2 column 13
+2024-11-21 13:32:48,823 - ERROR - Snippet around error: [{
+            {
+                },
+            }
+        ]
+    }
+2024-11-21 13:32:48,823 - ERROR - Error processing ../output/scraped_data_all.json: Expecting property name enclosed in double quotes: line 2 column 13 (char 15)
+Traceback (most recent call last):
+  File "fix.py", line 122, in <module>
+    validate_and_save(content, fixed_file_path)
+  File "fix.py", line 74, in validate_and_save
+    data = json.loads(content)
+  File "/usr/lib/python3.8/json/__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.8/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.8/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 2 column 13 (char 15)
+2024-11-21 13:32:48,824 - INFO - Processing file: ../output/scraped_data_all2.json
+2024-11-21 13:32:49,050 - DEBUG - Read 49994937 characters from file: ../output/scraped_data_all2.json
+2024-11-21 13:32:54,425 - DEBUG - Fixed keys without double quotes.
+2024-11-21 13:32:55,029 - DEBUG - Removed trailing commas.
+2024-11-21 13:32:55,030 - DEBUG - Validation failed after fixing keys: Extra data: line 685 column 1 (char 25400)
+2024-11-21 13:32:55,523 - DEBUG - Removed non-JSON lines.
+2024-11-21 13:32:55,586 - DEBUG - Validation failed after removing non-JSON lines: Expecting property name enclosed in double quotes: line 2 column 13 (char 14)
+2024-11-21 13:32:55,588 - DEBUG - Added missing commas between objects.
+2024-11-21 13:32:55,588 - DEBUG - Validation failed after adding commas: Expecting property name enclosed in double quotes: line 2 column 13 (char 14)
+2024-11-21 13:32:55,588 - DEBUG - Wrapped content in an array.
+2024-11-21 13:32:55,588 - ERROR - JSONDecodeError: Expecting property name enclosed in double quotes at line 2 column 13
+2024-11-21 13:32:55,588 - ERROR - Snippet around error: [{
+            {
+                },
+            }
+        ]
+    }
+2024-11-21 13:32:55,588 - ERROR - Error processing ../output/scraped_data_all2.json: Expecting property name enclosed in double quotes: line 2 column 13 (char 15)
+Traceback (most recent call last):
+  File "fix.py", line 122, in <module>
+    validate_and_save(content, fixed_file_path)
+  File "fix.py", line 74, in validate_and_save
+    data = json.loads(content)
+  File "/usr/lib/python3.8/json/__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.8/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.8/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 2 column 13 (char 15)
+2024-11-21 13:32:55,588 - INFO - Processing file: ../output/scraped_data_all3.json
+2024-11-21 13:32:55,730 - DEBUG - Read 30808206 characters from file: ../output/scraped_data_all3.json
+2024-11-21 13:32:59,106 - DEBUG - Fixed keys without double quotes.
+2024-11-21 13:32:59,475 - DEBUG - Removed trailing commas.
+2024-11-21 13:32:59,480 - DEBUG - Validation failed after fixing keys: Extra data: line 469 column 1 (char 17285)
+2024-11-21 13:32:59,784 - DEBUG - Removed non-JSON lines.
+2024-11-21 13:32:59,823 - DEBUG - Validation failed after removing non-JSON lines: Expecting property name enclosed in double quotes: line 2 column 13 (char 14)
+2024-11-21 13:32:59,824 - DEBUG - Added missing commas between objects.
+2024-11-21 13:32:59,824 - DEBUG - Validation failed after adding commas: Expecting property name enclosed in double quotes: line 2 column 13 (char 14)
+2024-11-21 13:32:59,825 - DEBUG - Wrapped content in an array.
+2024-11-21 13:32:59,825 - ERROR - JSONDecodeError: Expecting property name enclosed in double quotes at line 2 column 13
+2024-11-21 13:32:59,825 - ERROR - Snippet around error: [{
+            {
+                },
+            },
+            {
+
+2024-11-21 13:32:59,825 - ERROR - Error processing ../output/scraped_data_all3.json: Expecting property name enclosed in double quotes: line 2 column 13 (char 15)
+Traceback (most recent call last):
+  File "fix.py", line 122, in <module>
+    validate_and_save(content, fixed_file_path)
+  File "fix.py", line 74, in validate_and_save
+    data = json.loads(content)
+  File "/usr/lib/python3.8/json/__init__.py", line 357, in loads
+    return _default_decoder.decode(s)
+  File "/usr/lib/python3.8/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+  File "/usr/lib/python3.8/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 2 column 13 (char 15)

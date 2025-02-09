@@ -1,14 +1,58 @@
 # Here is my eTrade.py script
+from venv import logger
 import requests
 import json
 import time
 import os
 import logging
 from TGenerator import TGenerator
+from logging.handlers import RotatingFileHandler
+import os
+from datetime import datetime
 
 # Set up logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-logger = logging.getLogger(__name__)
+# logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+# logger = logging.getLogger(__name__)
+
+def setup_logging():
+    # Create logs directory if it doesn't exist
+    log_dir = '/app/logs'
+    os.makedirs(log_dir, exist_ok=True)
+
+    # Generate timestamp for log filename
+    timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
+    log_filename = f'/app/logs/scraper_{timestamp}.log'
+
+    # Create formatter
+    formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    )
+
+    # Setup file handler with rotation
+    file_handler = RotatingFileHandler(
+        log_filename,
+        maxBytes=10*1024*1024,  # 10MB
+        backupCount=5
+    )
+    file_handler.setFormatter(formatter)
+    file_handler.setLevel(logging.DEBUG)
+
+    # Setup console handler
+    console_handler = logging.StreamHandler()
+    console_handler.setFormatter(formatter)
+    console_handler.setLevel(logging.INFO)
+
+    # Setup root logger
+    root_logger = logging.getLogger()
+    root_logger.setLevel(logging.DEBUG)
+    root_logger.addHandler(file_handler)
+    root_logger.addHandler(console_handler)
+
+    # Create logger for this module
+    logger = logging.getLogger(__name__)
+    logger.info(f"Logging initialized. Log file: {log_filename}")
+    
+    return logger
 
 class Scraper:
     LEGAL_CONDITION_MAP = {
@@ -204,12 +248,49 @@ class Scraper:
         except Exception as e:
             logger.error(f"Error saving batch data: {e}")
 
+# def main():
+#     base_url = 'https://etrade.gov.et'
+#     scraper = Scraper(base_url, save_frequency=500)
+#     start_index = 872045
+#     t_generator = TGenerator(file_path='./data/formatted_tins.csv', start_index=start_index)
+#     batch_size = 5
+
+#     try:
+#         while True:
+#             tins = t_generator.get_next_numbers(batch_size)
+#             if not tins:
+#                 logger.info("No more TINs to process.")
+#                 break
+#             for tin in tins:
+#                 try:
+#                     data = scraper.simulate_button_click(tin)
+#                     if data:
+#                         logger.info(f"Data extracted for TIN {tin}.")
+#                 except Exception as e:
+#                     logger.error(f"Error processing TIN {tin}: {e}")
+#     except KeyboardInterrupt:
+#         logger.info("Scraping interrupted by user.")
+#     except Exception as e:
+#         logger.error(f"Unexpected error occurred in main: {e}")
+
+# if __name__ == "__main__":
+#     main()
+
+# Add these logging messages in your main function
 def main():
+    logger = setup_logging()
+    logger.info("Starting scraper application")
+    
     base_url = 'https://etrade.gov.et'
+    logger.info(f"Base URL: {base_url}")
+    
     scraper = Scraper(base_url, save_frequency=500)
     start_index = 872045
+    logger.info(f"Starting from index: {start_index}")
+    
     t_generator = TGenerator(file_path='./data/formatted_tins.csv', start_index=start_index)
     batch_size = 5
+    logger.info(f"Batch size: {batch_size}")
 
     try:
         while True:
@@ -217,17 +298,23 @@ def main():
             if not tins:
                 logger.info("No more TINs to process.")
                 break
+            logger.info(f"Processing batch of {len(tins)} TINs")
             for tin in tins:
                 try:
+                    logger.debug(f"Processing TIN: {tin}")
                     data = scraper.simulate_button_click(tin)
                     if data:
-                        logger.info(f"Data extracted for TIN {tin}.")
+                        logger.info(f"Successfully extracted data for TIN {tin}")
+                    else:
+                        logger.warning(f"No data returned for TIN {tin}")
                 except Exception as e:
-                    logger.error(f"Error processing TIN {tin}: {e}")
+                    logger.error(f"Error processing TIN {tin}: {e}", exc_info=True)
     except KeyboardInterrupt:
-        logger.info("Scraping interrupted by user.")
+        logger.info("Scraping interrupted by user")
     except Exception as e:
-        logger.error(f"Unexpected error occurred in main: {e}")
+        logger.error(f"Unexpected error occurred in main: {e}", exc_info=True)
+    finally:
+        logger.info("Scraper application shutting down")
 
 if __name__ == "__main__":
     main()

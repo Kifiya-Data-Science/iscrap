@@ -6,8 +6,8 @@ s3_client = boto3.client('s3')
 
 # Define local and S3 paths
 local_folder = '../output'  # Relative or absolute path to the output folder
-bucket_name = 'kft-etrade'
-s3_folder = 'scraped_data_using_update_scrape_engine/'
+bucket_name = 'kft-lakehouse-staging'
+s3_folder = 'kft-etrade/scraped_data_using_update_scrape_engine/'
 
 # Loop through the files and upload them
 for root, _, files in os.walk(local_folder):

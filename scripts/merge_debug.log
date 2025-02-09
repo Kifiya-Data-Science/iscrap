@@ -1,8 +1,0 @@
-2024-11-21 12:37:08,966 - ERROR - Failed to load JSON file: ../output/scraped_data_all.json_intermediate.json, error: Extra data: line 379 column 1 (char 13507)
-2024-11-21 12:37:09,184 - ERROR - Failed to load JSON file: ../output/scraped_data_all2.json_intermediate.json, error: Extra data: line 685 column 1 (char 25400)
-2024-11-21 12:37:09,325 - ERROR - Failed to load JSON file: ../output/scraped_data_all3.json_intermediate.json, error: Extra data: line 469 column 1 (char 17285)
-2024-11-21 12:37:09,329 - INFO - Merged JSON file saved successfully to ../output/merged_data.json
-2024-11-21 12:54:57,381 - ERROR - Failed to load JSON file ../output/scraped_data_all.json_intermediate.json: Extra data: line 379 column 1 (char 13507)
-2024-11-21 12:54:57,597 - ERROR - Failed to load JSON file ../output/scraped_data_all2.json_intermediate.json: Extra data: line 685 column 1 (char 25400)
-2024-11-21 12:54:57,736 - ERROR - Failed to load JSON file ../output/scraped_data_all3.json_intermediate.json: Extra data: line 469 column 1 (char 17285)
-2024-11-21 12:54:57,740 - INFO - Merged JSON file saved successfully to ../output/merged_data.json

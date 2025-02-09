@@ -185,7 +185,7 @@ class Scraper:
         # Determine the current file name
         output_dir = '/app/output'
         os.makedirs(output_dir, exist_ok=True)
-        file_path = os.path.join(output_dir, f'eTrade_data_firstb_{self.file_index}.json')
+        file_path = os.path.join(output_dir, f'eTrade_data_secondl_{self.file_index}.json')
 
         try:
             with open(file_path, 'a') as f:
@@ -207,7 +207,7 @@ class Scraper:
 def main():
     base_url = 'https://etrade.gov.et'
     scraper = Scraper(base_url, save_frequency=500)
-    start_index = 154592
+    start_index = 872045
     t_generator = TGenerator(file_path='./data/formatted_tins.csv', start_index=start_index)
     batch_size = 5
 

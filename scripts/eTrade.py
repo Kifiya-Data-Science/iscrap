@@ -10,10 +10,6 @@ from logging.handlers import RotatingFileHandler
 import os
 from datetime import datetime
 
-# Set up logging
-# logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
-# logger = logging.getLogger(__name__)
-
 def setup_logging():
     # Create logs directory if it doesn't exist
     log_dir = '/app/logs'
@@ -89,11 +85,11 @@ class Scraper:
         self.all_data = {}
         self.save_frequency = save_frequency
         self.batch_counter = 0
-        self.append_counter = 0  # Tracks the number of appends to the current file
-        self.file_index = 1      # Tracks the file number
+        self.append_counter = 0 
+        self.file_index = 1
 
     def simulate_button_click(self, tin):
-        url = f"{self.base_url}/api/Registration/GetRegistrationInfoByTin/{tin}/am"
+        url = f"{self.base_url}/api/Registration/GetRegistrationInfoByTin/{tin}/en"
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
             'Accept': 'application/json, text/plain, */*',
@@ -130,9 +126,14 @@ class Scraper:
         return None
 
     def safe_get(self, data, *keys):
-        """Safely access nested dictionary keys. Returns None if any key is missing or value is None."""
+        """Safely access nested dictionary keys and list indices. Returns None if any key is missing or value is None."""
         for key in keys:
-            data = data.get(key) if isinstance(data, dict) else None
+            if isinstance(data, dict):
+                data = data.get(key)
+            elif isinstance(data, list) and isinstance(key, int) and len(data) > key:
+                data = data[key]
+            else:
+                return None
         return data
 
     def format_data(self, initial_data, tin):
@@ -178,6 +179,8 @@ class Scraper:
                 "Description": self.safe_get(business, "SubGroups", 0, "Description")
             }
 
+            print("business_data", business_data)
+
             if business.get("LicenceNumber"):
                 additional_data = self.send_second_request(business["LicenceNumber"], tin)
                 if additional_data:
@@ -213,7 +216,7 @@ class Scraper:
                 status_description = self.STATUS_MAP.get(status_code, "N/A") if status_code is not None else "N/A"
                 
                 return {
-                    "AddressInfo": data.get("AddressInfo", None),  # Explicitly set to None if missing
+                    "AddressInfo": data.get("AddressInfo", None),
                     "Capital": data.get("Capital"),
                     "Status": status_description
                 }
@@ -229,7 +232,7 @@ class Scraper:
         # Determine the current file name
         output_dir = '/app/output'
         os.makedirs(output_dir, exist_ok=True)
-        file_path = os.path.join(output_dir, f'eTrade_data_secondl_{self.file_index}.json')
+        file_path = os.path.join(output_dir, f'eTrade_data_secondm_{self.file_index}.json')
 
         try:
             with open(file_path, 'a') as f:
@@ -243,40 +246,10 @@ class Scraper:
             # Check if the file has been appended 20 times
             if self.append_counter >= 20:
                 logger.info(f"File {file_path} reached 20 appends. Creating a new file.")
-                self.append_counter = 0  # Reset the append counter
-                self.file_index += 1     # Increment the file index
+                self.append_counter = 0 
+                self.file_index += 1
         except Exception as e:
             logger.error(f"Error saving batch data: {e}")
-
-# def main():
-#     base_url = 'https://etrade.gov.et'
-#     scraper = Scraper(base_url, save_frequency=500)
-#     start_index = 872045
-#     t_generator = TGenerator(file_path='./data/formatted_tins.csv', start_index=start_index)
-#     batch_size = 5
-
-#     try:
-#         while True:
-#             tins = t_generator.get_next_numbers(batch_size)
-#             if not tins:
-#                 logger.info("No more TINs to process.")
-#                 break
-#             for tin in tins:
-#                 try:
-#                     data = scraper.simulate_button_click(tin)
-#                     if data:
-#                         logger.info(f"Data extracted for TIN {tin}.")
-#                 except Exception as e:
-#                     logger.error(f"Error processing TIN {tin}: {e}")
-#     except KeyboardInterrupt:
-#         logger.info("Scraping interrupted by user.")
-#     except Exception as e:
-#         logger.error(f"Unexpected error occurred in main: {e}")
-
-# if __name__ == "__main__":
-#     main()
-
-# Add these logging messages in your main function
 def main():
     logger = setup_logging()
     logger.info("Starting scraper application")
@@ -285,7 +258,7 @@ def main():
     logger.info(f"Base URL: {base_url}")
     
     scraper = Scraper(base_url, save_frequency=500)
-    start_index = 872045
+    start_index = 999999
     logger.info(f"Starting from index: {start_index}")
     
     t_generator = TGenerator(file_path='./data/formatted_tins.csv', start_index=start_index)

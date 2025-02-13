@@ -56,6 +56,24 @@ Once the image is built, run the container with the following command:
 docker run -d -v "$(pwd)/output:/app/output" my_scraper_app
 docker run -d -v "$(pwd)/output:/app/output" my_scraper_second_app
 
+docker-compose build
+docker-compose up -d
+
+docker build -t etrade_scraper_two .
+docker run -d -v $(pwd)/output:/app/output -d -v $(pwd)/logs:/app/logs etrade_scraper_two
+
+Follow the Log in Real-Time
+docker logs -f <container_id>
+View the Tail of the Log
+docker logs <container_id>
+View the Head of the Log
+docker logs <container_id> | head -n 10
+View Logs with Timestamps
+docker logs -t <container_id>
+View the last 20 lines with timestamps:
+docker logs --tail 20 -t <container_id>
+Stream the last 10 lines in real-time:
+docker logs --tail 10 -f <container_id>
 ```
 
 This command:

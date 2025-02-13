@@ -7,8 +7,49 @@ import os
 import logging
 from TGenerator import TGenerator
 from logging.handlers import RotatingFileHandler
-import os
 from datetime import datetime
+import os
+import boto3
+from botocore.exceptions import NoCredentialsError, PartialCredentialsError
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
+class S3Uploader:
+    def __init__(self):
+        self.aws_access_key_id = os.getenv("AWS_ACCESS_KEY_ID")
+        self.aws_secret_access_key = os.getenv("AWS_SECRET_ACCESS_KEY")
+        self.region_name = os.getenv("AWS_REGION")
+        self.bucket_name = os.getenv("S3_BUCKET_NAME")
+        self.s3_path = os.getenv("S3_PATH")
+
+        # Initialize S3 client
+        self.s3_client = boto3.client(
+            "s3",
+            aws_access_key_id=self.aws_access_key_id,
+            aws_secret_access_key=self.aws_secret_access_key,
+            region_name=self.region_name,
+        )
+
+    def upload_to_s3(self, file_path, s3_key):
+        """Upload a file to the specified S3 bucket."""
+        try:
+            self.s3_client.upload_file(file_path, self.bucket_name, s3_key)
+            logger.info(f"File uploaded to S3: s3://{self.bucket_name}/{s3_key}")
+            return True
+        except FileNotFoundError:
+            logger.error(f"The file {file_path} was not found.")
+            return False
+        except NoCredentialsError:
+            logger.error("AWS credentials not found.")
+            return False
+        except PartialCredentialsError:
+            logger.error("Incomplete AWS credentials.")
+            return False
+        except Exception as e:
+            logger.error(f"Error uploading to S3: {e}")
+            return False
 
 def setup_logging():
     # Create logs directory if it doesn't exist
@@ -75,7 +116,7 @@ class Scraper:
         1: "Can be renewed",
         2: "It can be renewed with fine",
         3: "N/A",
-        4: "Empity",
+        4: "Unknown",  # Updated from "Empity" to "Unknown"
         5: "Active It's not renewal time",
         6: "Canceled"
     }
@@ -85,8 +126,9 @@ class Scraper:
         self.all_data = {}
         self.save_frequency = save_frequency
         self.batch_counter = 0
-        self.append_counter = 0 
+        self.append_counter = 0
         self.file_index = 1
+        self.s3_uploader = S3Uploader()  # Initialize S3 uploader
 
     def simulate_button_click(self, tin):
         url = f"{self.base_url}/api/Registration/GetRegistrationInfoByTin/{tin}/en"
@@ -105,6 +147,7 @@ class Scraper:
                 response = requests.get(url, headers=headers, timeout=10)
                 if response.status_code == 200:
                     data = response.json()
+                    self.save_raw_data(data, tin)  # Save raw data before formatting
                     self.format_data(data, tin)
                     return data
                 elif response.status_code == 204:
@@ -124,6 +167,28 @@ class Scraper:
 
         logger.error(f"Failed to fetch data for TIN {tin} after {max_attempts} attempts.")
         return None
+
+    def save_raw_data(self, raw_data, tin):
+        """Save raw JSON response to a file and upload it to S3."""
+        raw_data_dir = '/app/raw_data'
+        os.makedirs(raw_data_dir, exist_ok=True)
+        file_path = os.path.join(raw_data_dir, f'raw_data_{tin}.json')
+
+        try:
+            # Save raw data to a local file
+            with open(file_path, 'w') as f:
+                json.dump(raw_data, f, ensure_ascii=False, indent=4)
+            logger.info(f"Raw data for TIN {tin} saved to {file_path}")
+
+            # Upload the file to S3
+            s3_key = f"{os.getenv('S3_PATH')}raw_data_{tin}.json"
+            if self.s3_uploader.upload_to_s3(file_path, s3_key):
+                logger.info(f"Raw data for TIN {tin} uploaded to S3: {s3_key}")
+            else:
+                logger.error(f"Failed to upload raw data for TIN {tin} to S3.")
+
+        except Exception as e:
+            logger.error(f"Error saving raw data for TIN {tin}: {e}")
 
     def safe_get(self, data, *keys):
         """Safely access nested dictionary keys and list indices. Returns None if any key is missing or value is None."""
@@ -232,7 +297,7 @@ class Scraper:
         # Determine the current file name
         output_dir = '/app/output'
         os.makedirs(output_dir, exist_ok=True)
-        file_path = os.path.join(output_dir, f'eTrade_data_secondmm_{self.file_index}.json')
+        file_path = os.path.join(output_dir, f'eTrade_data_secondmmmm_{self.file_index}.json')
 
         try:
             with open(file_path, 'a') as f:
@@ -250,6 +315,7 @@ class Scraper:
                 self.file_index += 1
         except Exception as e:
             logger.error(f"Error saving batch data: {e}")
+
 def main():
     logger = setup_logging()
     logger.info("Starting scraper application")
@@ -258,7 +324,7 @@ def main():
     logger.info(f"Base URL: {base_url}")
     
     scraper = Scraper(base_url, save_frequency=500)
-    start_index = 1019038
+    start_index = 1025545
     logger.info(f"Starting from index: {start_index}")
     
     t_generator = TGenerator(file_path='./data/formatted_tins.csv', start_index=start_index)

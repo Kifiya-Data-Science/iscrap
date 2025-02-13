@@ -1,0 +1,10 @@
+# Here is my docker-compose.yml file:
+version: '3.8'
+services:
+  scraper:
+    build: .  # Build the image using the Dockerfile in the current directory
+    image: etrade_scraper  # Name the locally built image
+    volumes:
+      - ./output:/app/output
+      - ./logs:/app/logs
+      # - ./raw_data:/app/raw_data

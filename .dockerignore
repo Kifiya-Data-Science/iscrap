@@ -4,3 +4,16 @@ __pycache__
 .gitignore
 myenv
 eTrade/etrade_logs/*
+venv
+output
+raw_data
+logs
+notebooks
+output/
+raw_data/
+logs/
+notebooks/
+fix.py
+fixid.py
+merge.py
+pushInTOS3.py

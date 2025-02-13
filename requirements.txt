@@ -6,3 +6,5 @@ cachetools
 backoff
 httpx
 aiocache
+boto3
+python-dotenv

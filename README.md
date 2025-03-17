@@ -73,7 +73,7 @@ docker logs -t <container_id>
 View the last 20 lines with timestamps:
 docker logs --tail 20 -t <container_id>
 Stream the last 10 lines in real-time:
-docker logs --tail 10 -f <container_id>
+docker logs --tail 10 -f d271d7aaf06d
 ```
 
 This command:

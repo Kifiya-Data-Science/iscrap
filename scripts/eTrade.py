@@ -297,7 +297,7 @@ class Scraper:
         # Determine the current file name
         output_dir = '/app/output'
         os.makedirs(output_dir, exist_ok=True)
-        file_path = os.path.join(output_dir, f'eTrade_data_secondmnnn_{self.file_index}.json')
+        file_path = os.path.join(output_dir, f'eTrade_data_secondmnnnmm_9_{self.file_index}.json')
 
         try:
             with open(file_path, 'a') as f:
@@ -324,7 +324,7 @@ def main():
     logger.info(f"Base URL: {base_url}")
     
     scraper = Scraper(base_url, save_frequency=500)
-    start_index = 1318726
+    start_index = 1529593
     logger.info(f"Starting from index: {start_index}")
     
     t_generator = TGenerator(file_path='./data/formatted_tins.csv', start_index=start_index)

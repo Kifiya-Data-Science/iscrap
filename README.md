@@ -42,6 +42,8 @@ Run the following command to build the Docker image for the scraper:
 docker build -t my_scraper_app .
 docker build -t my_scraper_second_app .
 docker build -t my_scraperv2_first_app .
+docker build -t test .
+
 ```
 
 This command:
@@ -56,6 +58,7 @@ Once the image is built, run the container with the following command:
 docker run -d -v "$(pwd)/output:/app/output" my_scraper_app
 docker run -d -v "$(pwd)/output:/app/output" my_scraper_second_app
 docker run -d -v "$(pwd)/output:/app/output" my_scraperv2_first_app
+docker run -d -v "$(pwd)/output:/app/output" test
 
 
 docker-compose build
@@ -75,7 +78,7 @@ docker logs -t <container_id>
 View the last 20 lines with timestamps:
 docker logs --tail 20 -t <container_id>
 Stream the last 10 lines in real-time:
-docker logs --tail 10 -f ac9926f0beb2
+docker logs --tail 10 -f 8cbe9956c9db
 ```
 
 This command:

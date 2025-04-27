@@ -8,3 +8,6 @@ httpx
 aiocache
 boto3
 python-dotenv
+pandas
+tqdm
+tenacity
